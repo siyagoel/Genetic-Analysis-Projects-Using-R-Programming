@@ -1,0 +1,1980 @@
+---
+title: "SiyaRNASeqNew"
+output: html_document
+date: "2023-05-10"
+---
+
+```{r}
+library(Seurat)
+library(patchwork)
+library(dplyr)
+library(ggplot2)
+```
+
+```{r}
+#Importing and reading data for GEO dataset GSE216329
+GSM6668925data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668925",strip.suffix = TRUE)
+
+GSM6668926data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668926",strip.suffix = TRUE)
+
+GSM6668927data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668927",strip.suffix = TRUE)
+
+GSM6668928data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668928",strip.suffix = TRUE)
+
+GSM6668929data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668929",strip.suffix = TRUE)
+
+GSM6668930data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668930",strip.suffix = TRUE)
+
+GSM6668931data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668931",strip.suffix = TRUE)
+
+GSM6668932data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668932",strip.suffix = TRUE)
+
+GSM6668933data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668933",strip.suffix = TRUE)
+
+GSM6668934data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668934",strip.suffix = TRUE)
+
+GSM6668935data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668935",strip.suffix = TRUE)
+
+GSM6668936data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668936",strip.suffix = TRUE)
+
+GSM6668937data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668937",strip.suffix = TRUE)
+
+GSM6668938data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668938",strip.suffix = TRUE)
+
+GSM6668939data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668939",strip.suffix = TRUE)
+
+GSM6668940data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668940",strip.suffix = TRUE)
+
+GSM6668941data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668941",strip.suffix = TRUE)
+
+GSM6668942data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668942",strip.suffix = TRUE)
+
+GSM6668943data <- Read10X(data.dir = "/Users/seanwulab/Documents/Siya/216329Data/GSM6668943",strip.suffix = TRUE)
+
+GSM6668944data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668944",strip.suffix = TRUE)
+
+GSM6668945data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668945",strip.suffix = TRUE)
+
+GSM6668946data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668946",strip.suffix = TRUE)
+
+GSM6668947data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668947",strip.suffix = TRUE)
+
+GSM6668948data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668948",strip.suffix = TRUE)
+
+GSM6668949data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668949",strip.suffix = TRUE)
+
+GSM6668950data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668950",strip.suffix = TRUE)
+
+GSM6668951data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668951",strip.suffix = TRUE)
+
+GSM6668952data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668952",strip.suffix = TRUE)
+
+GSM6668953data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668953",strip.suffix = TRUE)
+
+GSM6668954data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668954",strip.suffix = TRUE)
+
+GSM6668955data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668955",strip.suffix = TRUE)
+
+GSM6668956data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668956",strip.suffix = TRUE)
+
+GSM6668957data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668957",strip.suffix = TRUE)
+
+GSM6668958data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668958",strip.suffix = TRUE)
+
+GSM6668959data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668959",strip.suffix = TRUE)
+
+GSM6668960data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668960",strip.suffix = TRUE)
+
+GSM6668961data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668961",strip.suffix = TRUE)
+
+GSM6668962data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668962",strip.suffix = TRUE)
+
+GSM6668963data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668963",strip.suffix = TRUE)
+
+GSM6668964data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668964",strip.suffix = TRUE)
+
+GSM6668965data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668965",strip.suffix = TRUE)
+
+GSM6668966data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668966",strip.suffix = TRUE)
+
+GSM6668967data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668967",strip.suffix = TRUE)
+
+GSM6668968data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668968",strip.suffix = TRUE)
+
+GSM6668969data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668969",strip.suffix = TRUE)
+
+GSM6668970data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668970",strip.suffix = TRUE)
+
+GSM6668971data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668971",strip.suffix = TRUE)
+
+GSM6668972data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/216329Data/GSM6668972",strip.suffix = TRUE)
+```
+
+```{r}
+#Creating seurat objects for GEO dataset GSE216329
+GSM6668925 <- CreateSeuratObject(counts = GSM6668925data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668926 <- CreateSeuratObject(counts = GSM6668926data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668927 <- CreateSeuratObject(counts = GSM6668927data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668928 <- CreateSeuratObject(counts = GSM6668928data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668929 <- CreateSeuratObject(counts = GSM6668929data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668930 <- CreateSeuratObject(counts = GSM6668930data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668931 <- CreateSeuratObject(counts = GSM6668931data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668932 <- CreateSeuratObject(counts = GSM6668932data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668933 <- CreateSeuratObject(counts = GSM6668933data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668934 <- CreateSeuratObject(counts = GSM6668934data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668935 <- CreateSeuratObject(counts = GSM6668935data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668936 <- CreateSeuratObject(counts = GSM6668936data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668937 <- CreateSeuratObject(counts = GSM6668937data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668938 <- CreateSeuratObject(counts = GSM6668938data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668939 <- CreateSeuratObject(counts = GSM6668939data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668940 <- CreateSeuratObject(counts = GSM6668940data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668941 <- CreateSeuratObject(counts = GSM6668941data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668942 <- CreateSeuratObject(counts = GSM6668942data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668943 <- CreateSeuratObject(counts = GSM6668943data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668944 <- CreateSeuratObject(counts = GSM6668944data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668945 <- CreateSeuratObject(counts = GSM6668945data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668946 <- CreateSeuratObject(counts = GSM6668946data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668947 <- CreateSeuratObject(counts = GSM6668947data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668948 <- CreateSeuratObject(counts = GSM6668948data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668949 <- CreateSeuratObject(counts = GSM6668949data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668950 <- CreateSeuratObject(counts = GSM6668950data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668951 <- CreateSeuratObject(counts = GSM6668951data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668952 <- CreateSeuratObject(counts = GSM6668952data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668953 <- CreateSeuratObject(counts = GSM6668953data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668954 <- CreateSeuratObject(counts = GSM6668954data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668955 <- CreateSeuratObject(counts = GSM6668955data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668956 <- CreateSeuratObject(counts = GSM6668956data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668957 <- CreateSeuratObject(counts = GSM6668957data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668958 <- CreateSeuratObject(counts = GSM6668958data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668959 <- CreateSeuratObject(counts = GSM6668959data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668960 <- CreateSeuratObject(counts = GSM6668960data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668961 <- CreateSeuratObject(counts = GSM6668961data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668962 <- CreateSeuratObject(counts = GSM6668962data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668963 <- CreateSeuratObject(counts = GSM6668963data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668964 <- CreateSeuratObject(counts = GSM6668964data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668965 <- CreateSeuratObject(counts = GSM6668965data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668966 <- CreateSeuratObject(counts = GSM6668966data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668967 <- CreateSeuratObject(counts = GSM6668967data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668968 <- CreateSeuratObject(counts = GSM6668968data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668969 <- CreateSeuratObject(counts = GSM6668969data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668970 <- CreateSeuratObject(counts = GSM6668970data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668971 <- CreateSeuratObject(counts = GSM6668971data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+GSM6668972 <- CreateSeuratObject(counts = GSM6668972data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+```
+
+```{r}
+#Importing and reading data for GEO dataset GSE144469
+C1CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/C1-CD3",strip.suffix = TRUE)
+
+C2CD3data <- Read10X(data.dir = "/Users/seanwulab/Documents/Siya/144469Data/C2-CD3",strip.suffix = TRUE)
+
+C2CD45data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/C2-CD45",strip.suffix = TRUE)
+
+C3CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/C3-CD3",strip.suffix = TRUE)
+
+C3CD45data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/C3-CD45",strip.suffix = TRUE)
+
+C4CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/C4-CD3",strip.suffix = TRUE)
+
+C4CD45data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/C4-CD45",strip.suffix = TRUE)
+
+C5CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/C5-CD3",strip.suffix = TRUE)
+
+C5CD45data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/C5-CD45",strip.suffix = TRUE)
+
+C6CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/C6-CD3",strip.suffix = TRUE)
+
+C6CD45data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/C6-CD45",strip.suffix = TRUE)
+
+C7CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/C7-CD3",strip.suffix = TRUE)
+
+C8CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/C8-CD3",strip.suffix = TRUE)
+
+CT1CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/CT1-CD3",strip.suffix = TRUE)
+
+CT1CD45data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/CT1-CD45",strip.suffix = TRUE)
+
+CT2CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/CT2-CD3",strip.suffix = TRUE)
+
+CT2CD45data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/CT2-CD45",strip.suffix = TRUE)
+
+CT3CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/CT3-CD3",strip.suffix = TRUE)
+
+CT3CD45data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/CT3-CD45",strip.suffix = TRUE)
+
+CT4CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/CT4-CD3",strip.suffix = TRUE)
+
+CT4CD45data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/CT4-CD45",strip.suffix = TRUE)
+
+CT5CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/CT5-CD3",strip.suffix = TRUE)
+
+CT6CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/CT6-CD3",strip.suffix = TRUE)
+
+CT6CD45data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/CT6-CD45",strip.suffix = TRUE)
+
+CT7CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/CT7-CD3",strip.suffix = TRUE)
+
+CT8CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/CT8-CD3",strip.suffix = TRUE)
+
+NC1CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/NC1-CD3",strip.suffix = TRUE)
+
+NC1CD45data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/NC1-CD45",strip.suffix = TRUE)
+
+NC2CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/NC2-CD3",strip.suffix = TRUE)
+
+NC2CD45data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/NC2-CD45",strip.suffix = TRUE)
+
+NC3CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/NC3-CD3",strip.suffix = TRUE)
+
+NC3CD45data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/NC3-CD45",strip.suffix = TRUE)
+
+NC4CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/NC4-CD3",strip.suffix = TRUE)
+
+NC4CD45data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/NC4-CD45",strip.suffix = TRUE)
+
+NC5CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/NC5-CD3",strip.suffix = TRUE)
+
+NC6CD3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/NC6-CD3",strip.suffix = TRUE)
+
+NC6CD45data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/144469Data/NC6-CD45",strip.suffix = TRUE)
+```
+
+```{r}
+#Creating seurat objects for GEO dataset GSE144469
+C1CD3 <- CreateSeuratObject(counts = C1CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+C2CD3 <- CreateSeuratObject(counts = C2CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+C2CD45 <- CreateSeuratObject(counts = C2CD45data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+C3CD3 <- CreateSeuratObject(counts = C3CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+C3CD45 <- CreateSeuratObject(counts = C3CD45data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+C4CD3 <- CreateSeuratObject(counts = C4CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+C4CD45 <- CreateSeuratObject(counts = C4CD45data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+C5CD3 <- CreateSeuratObject(counts = C5CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+C6CD3 <- CreateSeuratObject(counts = C6CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+C6CD45 <- CreateSeuratObject(counts = C6CD45data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+C7CD3 <- CreateSeuratObject(counts = C7CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+C8CD3 <- CreateSeuratObject(counts = C8CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+CT1CD3 <- CreateSeuratObject(counts = CT1CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+CT1CD45 <- CreateSeuratObject(counts = CT1CD45data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+CT2CD3 <- CreateSeuratObject(counts = CT1CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+CT2CD45 <- CreateSeuratObject(counts = CT1CD45data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+CT3CD3 <- CreateSeuratObject(counts = CT3CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+CT3CD45 <- CreateSeuratObject(counts = CT3CD45data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+CT4CD3 <- CreateSeuratObject(counts = CT4CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+CT4CD45 <- CreateSeuratObject(counts = CT4CD45data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+CT5CD3 <- CreateSeuratObject(counts = CT5CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+CT6CD3 <- CreateSeuratObject(counts = CT6CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+CT6CD45 <- CreateSeuratObject(counts = CT6CD45data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+CT7CD3 <- CreateSeuratObject(counts = CT7CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+CT8CD3 <- CreateSeuratObject(counts = CT8CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+NC1CD3 <- CreateSeuratObject(counts = NC1CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+NC1CD45 <- CreateSeuratObject(counts = NC1CD45data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+NC2CD3 <- CreateSeuratObject(counts = NC2CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+NC2CD45 <- CreateSeuratObject(counts = NC2CD45data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+NC3CD3 <- CreateSeuratObject(counts = NC3CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+NC3CD45 <- CreateSeuratObject(counts = NC3CD45data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+NC4CD3 <- CreateSeuratObject(counts = NC4CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+NC4CD45 <- CreateSeuratObject(counts = NC4CD45data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+NC5CD3 <- CreateSeuratObject(counts = NC5CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+NC6CD3 <- CreateSeuratObject(counts = NC4CD3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+
+NC6CD45 <- CreateSeuratObject(counts = NC4CD45data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+```
+
+```{r}
+#Importing and reading data for GEO dataset GSE162025
+GSM4929845data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929845_NPC_SC_1802_PBMC_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929846data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929846_NPC_SC_1802_Tumor_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929847data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929847_NPC_SC_1805_PBMC_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929848data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929848_NPC_SC_1805_Tumor_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929849data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929849_NPC_SC_1806_PBMC_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929850data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929850_NPC_SC_1806_Tumor_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929851data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929851_NPC_SC_1807_PBMC_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929852data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929852_NPC_SC_1807_Tumor_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929853data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929853_NPC_SC_1808_PBMC_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929854data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929854_NPC_SC_1808_Tumor_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929855data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929855_NPC_SC_1810_PBMC_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929856data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929856_NPC_SC_1810_Tumor_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929857data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929857_NPC_SC_1811_PBMC_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929858data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929858_NPC_SC_1811_Tumor_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929859data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929859_NPC_SC_1813_PBMC_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929860data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929860_NPC_SC_1813_Tumor_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929861data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929861_NPC_SC_1815_PBMC_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929862data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929862_NPC_SC_1815_Tumor_count.csv.gz", header = TRUE, row.names = 1)
+GSM4929863data <- read.csv(file = "/Users/seanwulab/Documents/Siya/GSE162025_RAW/GSM4929863_NPC_SC_1816_PBMC_count.csv.gz", header = TRUE, row.names = 1)
+```
+
+```{r}
+#Creating seurat objects for GEO dataset GSE162025
+GSM4929845 <- CreateSeuratObject(counts = GSM4929845data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929846 <- CreateSeuratObject(counts = GSM4929846data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929847 <- CreateSeuratObject(counts = GSM4929847data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929848 <- CreateSeuratObject(counts = GSM4929848data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929849 <- CreateSeuratObject(counts = GSM4929849data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929850 <- CreateSeuratObject(counts = GSM4929850data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929851 <- CreateSeuratObject(counts = GSM4929851data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929852 <- CreateSeuratObject(counts = GSM4929852data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929853 <- CreateSeuratObject(counts = GSM4929853data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929854 <- CreateSeuratObject(counts = GSM4929854data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929855 <- CreateSeuratObject(counts = GSM4929855data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929856 <- CreateSeuratObject(counts = GSM4929856data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929857 <- CreateSeuratObject(counts = GSM4929857data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929858 <- CreateSeuratObject(counts = GSM4929858data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929859 <- CreateSeuratObject(counts = GSM4929859data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929860 <- CreateSeuratObject(counts = GSM4929860data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929861 <- CreateSeuratObject(counts = GSM4929861data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929862 <- CreateSeuratObject(counts = GSM4929862data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM4929863 <- CreateSeuratObject(counts = GSM4929863data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+```
+
+```{r}
+#Importing and reading data for GEO dataset GSE164690
+GSM5017071data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017071",strip.suffix = TRUE)
+GSM5017070data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017070",strip.suffix = TRUE)
+GSM5017069data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017069",strip.suffix = TRUE)
+GSM5017068data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017068",strip.suffix = TRUE)
+GSM5017067data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017067",strip.suffix = TRUE)
+GSM5017066data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017066",strip.suffix = TRUE)
+GSM5017065data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017065",strip.suffix = TRUE)
+GSM5017064data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017064",strip.suffix = TRUE)
+GSM5017063data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017063",strip.suffix = TRUE)
+GSM5017062data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017062",strip.suffix = TRUE)
+GSM5017061data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017061",strip.suffix = TRUE)
+GSM5017060data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017060",strip.suffix = TRUE)
+GSM5017059data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017059",strip.suffix = TRUE)
+GSM5017058data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017058",strip.suffix = TRUE)
+GSM5017057data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017057",strip.suffix = TRUE)
+GSM5017056data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017056",strip.suffix = TRUE)
+GSM5017055data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017055",strip.suffix = TRUE)
+GSM5017054data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017054",strip.suffix = TRUE)
+GSM5017053data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017053",strip.suffix = TRUE)
+GSM5017052data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017052",strip.suffix = TRUE)
+GSM5017051data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017051",strip.suffix = TRUE)
+GSM5017050data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017050",strip.suffix = TRUE)
+GSM5017049data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017049",strip.suffix = TRUE)
+GSM5017048data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017048",strip.suffix = TRUE)
+GSM5017047data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017047",strip.suffix = TRUE)
+GSM5017046data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017046",strip.suffix = TRUE)
+GSM5017044data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017044",strip.suffix = TRUE)
+GSM5017043data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017043",strip.suffix = TRUE)
+GSM5017042data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017042",strip.suffix = TRUE)
+GSM5017041data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017041",strip.suffix = TRUE)
+GSM5017040data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017040",strip.suffix = TRUE)
+GSM5017039data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017039",strip.suffix = TRUE)
+GSM5017038data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017038",strip.suffix = TRUE)
+GSM5017037data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017037",strip.suffix = TRUE)
+GSM5017036data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017036",strip.suffix = TRUE)
+GSM5017035data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017035",strip.suffix = TRUE)
+GSM5017034data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017034",strip.suffix = TRUE)
+GSM5017033data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017033",strip.suffix = TRUE)
+GSM5017032data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017032",strip.suffix = TRUE)
+GSM5017031data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017031",strip.suffix = TRUE)
+GSM5017030data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017030",strip.suffix = TRUE)
+GSM5017029data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017029",strip.suffix = TRUE)
+GSM5017028data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017028",strip.suffix = TRUE)
+GSM5017027data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017027",strip.suffix = TRUE)
+GSM5017026data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017026",strip.suffix = TRUE)
+GSM5017025data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017025",strip.suffix = TRUE)
+GSM5017024data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017024",strip.suffix = TRUE)
+GSM5017023data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017023",strip.suffix = TRUE)
+GSM5017022data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017022",strip.suffix = TRUE)
+GSM5017021data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE164690_RAW/GSM5017021",strip.suffix = TRUE)
+```
+
+```{r}
+#Creating seurat objects for GEO dataset GSE164690
+GSM5017071 <- CreateSeuratObject(counts = GSM5017071data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017070 <- CreateSeuratObject(counts = GSM5017070data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017069 <- CreateSeuratObject(counts = GSM5017069data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017068 <- CreateSeuratObject(counts = GSM5017068data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017067 <- CreateSeuratObject(counts = GSM5017067data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017066 <- CreateSeuratObject(counts = GSM5017066data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017065 <- CreateSeuratObject(counts = GSM5017065data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017064 <- CreateSeuratObject(counts = GSM5017064data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017063 <- CreateSeuratObject(counts = GSM5017063data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017062 <- CreateSeuratObject(counts = GSM5017062data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017061 <- CreateSeuratObject(counts = GSM5017061data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017060 <- CreateSeuratObject(counts = GSM5017060data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017059 <- CreateSeuratObject(counts = GSM5017059data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017058 <- CreateSeuratObject(counts = GSM5017058data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017057 <- CreateSeuratObject(counts = GSM5017057data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017056 <- CreateSeuratObject(counts = GSM5017056data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017055 <- CreateSeuratObject(counts = GSM5017055data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017054 <- CreateSeuratObject(counts = GSM5017054data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017053 <- CreateSeuratObject(counts = GSM5017053data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017052 <- CreateSeuratObject(counts = GSM5017052data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017051 <- CreateSeuratObject(counts = GSM5017051data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017050 <- CreateSeuratObject(counts = GSM5017050data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017049 <- CreateSeuratObject(counts = GSM5017049data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017048 <- CreateSeuratObject(counts = GSM5017048data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017047 <- CreateSeuratObject(counts = GSM5017047data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017046 <- CreateSeuratObject(counts = GSM5017046data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017044 <- CreateSeuratObject(counts = GSM5017044data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017043 <- CreateSeuratObject(counts = GSM5017043data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017042 <- CreateSeuratObject(counts = GSM5017042data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017041 <- CreateSeuratObject(counts = GSM5017041data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017040 <- CreateSeuratObject(counts = GSM5017040data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017039 <- CreateSeuratObject(counts = GSM5017039data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017038 <- CreateSeuratObject(counts = GSM5017038data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017037 <- CreateSeuratObject(counts = GSM5017037data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017036 <- CreateSeuratObject(counts = GSM5017036data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017035 <- CreateSeuratObject(counts = GSM5017035data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017034 <- CreateSeuratObject(counts = GSM5017034data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017033 <- CreateSeuratObject(counts = GSM5017033data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017032 <- CreateSeuratObject(counts = GSM5017032data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017031 <- CreateSeuratObject(counts = GSM5017031data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017030 <- CreateSeuratObject(counts = GSM5017030data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017029 <- CreateSeuratObject(counts = GSM5017029data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017028 <- CreateSeuratObject(counts = GSM5017028data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017027 <- CreateSeuratObject(counts = GSM5017027data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017026 <- CreateSeuratObject(counts = GSM5017026data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017025 <- CreateSeuratObject(counts = GSM5017025data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017024 <- CreateSeuratObject(counts = GSM5017024data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017023 <- CreateSeuratObject(counts = GSM5017023data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017022 <- CreateSeuratObject(counts = GSM5017023data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+GSM5017021 <- CreateSeuratObject(counts = GSM5017021data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+```
+
+```{r}
+#Importing and reading data for GEO dataset GSE156405
+LiMdata <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/LiM_filtered_feature_bc_matrix",strip.suffix = TRUE)
+LuMdata <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/LuM_filtered_feature_bc_matrix",strip.suffix = TRUE)
+P1data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/P1_filtered_feature_bc_matrix",strip.suffix = TRUE)
+P2data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/P2_filtered_feature_bc_matrix",strip.suffix = TRUE)
+P3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/P3_filtered_feature_bc_matrix",strip.suffix = TRUE)
+P4data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/P4_filtered_feature_bc_matrix",strip.suffix = TRUE)
+P5data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/P5_filtered_feature_bc_matrix",strip.suffix = TRUE)
+PBMCLiMdata <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/PBMC-LiM_filtered_feature_bc_matrix",strip.suffix = TRUE)
+PBMCLuMdata <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/PBMC-LuM_filtered_feature_bc_matrix",strip.suffix = TRUE)
+PBMCP1data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/PBMC-P1_filtered_feature_bc_matrix",strip.suffix = TRUE)
+PBMCP2data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/PBMC-P2_filtered_feature_bc_matrix",strip.suffix = TRUE)
+PBMCP3data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/PBMC-P3_filtered_feature_bc_matrix",strip.suffix = TRUE)
+PBMCP4data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/PBMC-P4_filtered_feature_bc_matrix",strip.suffix = TRUE)
+PBMCPMdata <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/PBMC-PM_filtered_feature_bc_matrix",strip.suffix = TRUE)
+PBMCVMdata <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/PBMC-VM_filtered_feature_bc_matrix",strip.suffix = TRUE)
+PBMCearlydata <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/PDO-1_early_filtered_feature_bc_matrix",strip.suffix = TRUE)
+PBMClatedata <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/PDO-1_late_filtered_feature_bc_matrix",strip.suffix = TRUE)
+PBMCPDO2data <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/PDO-2_filtered_feature_bc_matrix",strip.suffix = TRUE)
+VMdata <- Read10X(data.dir ="/Users/seanwulab/Documents/Siya/GSE156405_RAW/VM_filtered_feature_bc_matrix",strip.suffix = TRUE)
+
+```
+
+```{r}
+#Creating seurat objects for GEO dataset GSE156405
+LiM <- CreateSeuratObject(counts = LiMdata, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+LuM <- CreateSeuratObject(counts = LuMdata, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+P1 <- CreateSeuratObject(counts = P1data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+P2 <- CreateSeuratObject(counts = P2data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+P3 <- CreateSeuratObject(counts = P3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+P4 <- CreateSeuratObject(counts = P4data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+P5 <- CreateSeuratObject(counts = P5data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+PBMCLiM <- CreateSeuratObject(counts = PBMCLiMdata, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+PVMCLuM <- CreateSeuratObject(counts = PBMCLuMdata, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+PBMCP1 <- CreateSeuratObject(counts = PBMCP1data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+PBMCP2 <- CreateSeuratObject(counts = PBMCP2data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+PBMCP3 <- CreateSeuratObject(counts = PBMCP3data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+PBMCP4 <- CreateSeuratObject(counts = PBMCP4data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+PBMCPM <- CreateSeuratObject(counts = PBMCPMdata, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+PBMCVM <- CreateSeuratObject(counts = PBMCVMdata, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+PBMCearly <- CreateSeuratObject(counts = PBMCearlydata, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+PBMClate <- CreateSeuratObject(counts = PBMClatedata, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+PBMCPDO2 <- CreateSeuratObject(counts = PBMCPDO2data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+VM <- CreateSeuratObject(counts = VMdata, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+```
+
+```{r}
+#Importing and reading data for GEO dataset GSE117988
+PBMCdata <- read.csv( file = "/Users/seanwulab/Documents/Siya/GSE117988_raw.expMatrix_PBMC.csv", header = TRUE, row.names = 1)
+Tumordata <- read.csv( file = "/Users/seanwulab/Documents/Siya/GSE117988_raw.expMatrix_Tumor.csv", header = TRUE, row.names = 1)
+```
+
+```{r}
+#Creating seurat objects for GEO dataset GSE117988
+PBMC <- CreateSeuratObject(counts = PBMCdata, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+Tumor <- CreateSeuratObject(counts = Tumordata, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+```
+
+```{r}
+#Importing and reading data for GEO dataset GSE183590
+GSE183590data <- read.csv( file = "/Users/seanwulab/Documents/Siya/GSE183590.csv", header = TRUE, row.names = 1)
+```
+
+```{r}
+#Creating seurat objects for GEO dataset GSE183590
+GSE183590 <- CreateSeuratObject(counts = GSE183590data, project = "1-28-spl-4wkHomoM", min.cells = 3, min.features = 200)
+```
+
+```{r}
+#Removing dead cells by filtering cells based on mitochondrial DNA expression for GEO datset GSE216329
+DefaultAssay(GSM6668925) <- "RNA"
+GSM6668925[["percent.mt"]] <- PercentageFeatureSet(GSM6668925, pattern="^mt-")
+DefaultAssay(GSM6668926) <- "RNA"
+GSM6668926[["percent.mt"]] <- PercentageFeatureSet(GSM6668926, pattern="^mt-")
+DefaultAssay(GSM6668927) <- "RNA"
+GSM6668927[["percent.mt"]] <- PercentageFeatureSet(GSM6668927, pattern="^mt-")
+DefaultAssay(GSM6668928) <- "RNA"
+GSM6668928[["percent.mt"]] <- PercentageFeatureSet(GSM6668928, pattern="^mt-")
+DefaultAssay(GSM6668929) <- "RNA"
+GSM6668929[["percent.mt"]] <- PercentageFeatureSet(GSM6668929, pattern="^mt-")
+DefaultAssay(GSM6668930) <- "RNA"
+GSM6668930[["percent.mt"]] <- PercentageFeatureSet(GSM6668930, pattern="^mt-")
+DefaultAssay(GSM6668931) <- "RNA"
+GSM6668931[["percent.mt"]] <- PercentageFeatureSet(GSM6668931, pattern="^mt-")
+DefaultAssay(GSM6668932) <- "RNA"
+GSM6668932[["percent.mt"]] <- PercentageFeatureSet(GSM6668932, pattern="^mt-")
+DefaultAssay(GSM6668933) <- "RNA"
+GSM6668933[["percent.mt"]] <- PercentageFeatureSet(GSM6668933, pattern="^mt-")
+DefaultAssay(GSM6668934) <- "RNA"
+GSM6668934[["percent.mt"]] <- PercentageFeatureSet(GSM6668934, pattern="^mt-")
+DefaultAssay(GSM6668935) <- "RNA"
+GSM6668935[["percent.mt"]] <- PercentageFeatureSet(GSM6668935, pattern="^mt-")
+DefaultAssay(GSM6668936) <- "RNA"
+GSM6668936[["percent.mt"]] <- PercentageFeatureSet(GSM6668936, pattern="^mt-")
+DefaultAssay(GSM6668937) <- "RNA"
+GSM6668937[["percent.mt"]] <- PercentageFeatureSet(GSM6668937, pattern="^mt-")
+DefaultAssay(GSM6668938) <- "RNA"
+GSM6668938[["percent.mt"]] <- PercentageFeatureSet(GSM6668938, pattern="^mt-")
+DefaultAssay(GSM6668939) <- "RNA"
+GSM6668939[["percent.mt"]] <- PercentageFeatureSet(GSM6668939, pattern="^mt-")
+DefaultAssay(GSM6668940) <- "RNA"
+GSM6668940[["percent.mt"]] <- PercentageFeatureSet(GSM6668940, pattern="^mt-")
+DefaultAssay(GSM6668941) <- "RNA"
+GSM6668941[["percent.mt"]] <- PercentageFeatureSet(GSM6668941, pattern="^mt-")
+DefaultAssay(GSM6668942) <- "RNA"
+GSM6668942[["percent.mt"]] <- PercentageFeatureSet(GSM6668942, pattern="^mt-")
+DefaultAssay(GSM6668943) <- "RNA"
+GSM6668943[["percent.mt"]] <- PercentageFeatureSet(GSM6668943, pattern="^mt-")
+DefaultAssay(GSM6668944) <- "RNA"
+GSM6668944[["percent.mt"]] <- PercentageFeatureSet(GSM6668944, pattern="^mt-")
+DefaultAssay(GSM6668945) <- "RNA"
+GSM6668945[["percent.mt"]] <- PercentageFeatureSet(GSM6668945, pattern="^mt-")
+DefaultAssay(GSM6668946) <- "RNA"
+GSM6668946[["percent.mt"]] <- PercentageFeatureSet(GSM6668946, pattern="^mt-")
+DefaultAssay(GSM6668947) <- "RNA"
+GSM6668947[["percent.mt"]] <- PercentageFeatureSet(GSM6668947, pattern="^mt-")
+DefaultAssay(GSM6668948) <- "RNA"
+GSM6668948[["percent.mt"]] <- PercentageFeatureSet(GSM6668948, pattern="^mt-")
+DefaultAssay(GSM6668949) <- "RNA"
+GSM6668949[["percent.mt"]] <- PercentageFeatureSet(GSM6668949, pattern="^mt-")
+DefaultAssay(GSM6668950) <- "RNA"
+GSM6668950[["percent.mt"]] <- PercentageFeatureSet(GSM6668950, pattern="^mt-")
+DefaultAssay(GSM6668951) <- "RNA"
+GSM6668951[["percent.mt"]] <- PercentageFeatureSet(GSM6668951, pattern="^mt-")
+DefaultAssay(GSM6668952) <- "RNA"
+GSM6668952[["percent.mt"]] <- PercentageFeatureSet(GSM6668952, pattern="^mt-")
+DefaultAssay(GSM6668953) <- "RNA"
+GSM6668953[["percent.mt"]] <- PercentageFeatureSet(GSM6668953, pattern="^mt-")
+DefaultAssay(GSM6668954) <- "RNA"
+GSM6668954[["percent.mt"]] <- PercentageFeatureSet(GSM6668954, pattern="^mt-")
+DefaultAssay(GSM6668955) <- "RNA"
+GSM6668955[["percent.mt"]] <- PercentageFeatureSet(GSM6668955, pattern="^mt-")
+DefaultAssay(GSM6668956) <- "RNA"
+GSM6668956[["percent.mt"]] <- PercentageFeatureSet(GSM6668956, pattern="^mt-")
+DefaultAssay(GSM6668957) <- "RNA"
+GSM6668957[["percent.mt"]] <- PercentageFeatureSet(GSM6668957, pattern="^mt-")
+DefaultAssay(GSM6668958) <- "RNA"
+GSM6668958[["percent.mt"]] <- PercentageFeatureSet(GSM6668958, pattern="^mt-")
+DefaultAssay(GSM6668959) <- "RNA"
+GSM6668959[["percent.mt"]] <- PercentageFeatureSet(GSM6668959, pattern="^mt-")
+DefaultAssay(GSM6668960) <- "RNA"
+GSM6668960[["percent.mt"]] <- PercentageFeatureSet(GSM6668960, pattern="^mt-")
+DefaultAssay(GSM6668961) <- "RNA"
+GSM6668961[["percent.mt"]] <- PercentageFeatureSet(GSM6668961, pattern="^mt-")
+DefaultAssay(GSM6668962) <- "RNA"
+GSM6668962[["percent.mt"]] <- PercentageFeatureSet(GSM6668962, pattern="^mt-")
+DefaultAssay(GSM6668963) <- "RNA"
+GSM6668963[["percent.mt"]] <- PercentageFeatureSet(GSM6668963, pattern="^mt-")
+DefaultAssay(GSM6668964) <- "RNA"
+GSM6668964[["percent.mt"]] <- PercentageFeatureSet(GSM6668964, pattern="^mt-")
+DefaultAssay(GSM6668965) <- "RNA"
+GSM6668965[["percent.mt"]] <- PercentageFeatureSet(GSM6668965, pattern="^mt-")
+DefaultAssay(GSM6668966) <- "RNA"
+GSM6668966[["percent.mt"]] <- PercentageFeatureSet(GSM6668966, pattern="^mt-")
+DefaultAssay(GSM6668967) <- "RNA"
+GSM6668967[["percent.mt"]] <- PercentageFeatureSet(GSM6668967, pattern="^mt-")
+DefaultAssay(GSM6668968) <- "RNA"
+GSM6668968[["percent.mt"]] <- PercentageFeatureSet(GSM6668968, pattern="^mt-")
+DefaultAssay(GSM6668969) <- "RNA"
+GSM6668969[["percent.mt"]] <- PercentageFeatureSet(GSM6668969, pattern="^mt-")
+DefaultAssay(GSM6668970) <- "RNA"
+GSM6668970[["percent.mt"]] <- PercentageFeatureSet(GSM6668970, pattern="^mt-")
+DefaultAssay(GSM6668971) <- "RNA"
+GSM6668971[["percent.mt"]] <- PercentageFeatureSet(GSM6668971, pattern="^mt-")
+DefaultAssay(GSM6668972) <- "RNA"
+GSM6668972[["percent.mt"]] <- PercentageFeatureSet(GSM6668972, pattern="^mt-")
+```
+
+```{r}
+#Removing dead cells by filtering cells based on mitochondrial DNA expression for GEO datset GSE216329
+GSM6668925 <- subset(GSM6668925, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668926 <- subset(GSM6668926, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668927 <- subset(GSM6668927, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668928 <- subset(GSM6668928, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668929 <- subset(GSM6668929, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668930 <- subset(GSM6668930, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668931 <- subset(GSM6668931, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668932 <- subset(GSM6668932, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668933 <- subset(GSM6668933, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668934 <- subset(GSM6668934, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668935 <- subset(GSM6668935, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668936 <- subset(GSM6668936, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668937 <- subset(GSM6668937, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668938 <- subset(GSM6668938, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668939 <- subset(GSM6668939, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668940 <- subset(GSM6668940, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668941 <- subset(GSM6668941, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668942 <- subset(GSM6668942, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668943 <- subset(GSM6668943, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668944 <- subset(GSM6668944, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668945 <- subset(GSM6668945, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668946 <- subset(GSM6668946, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668947 <- subset(GSM6668947, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668948 <- subset(GSM6668948, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668949 <- subset(GSM6668949, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668950 <- subset(GSM6668950, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668951 <- subset(GSM6668951, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668952 <- subset(GSM6668952, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668953 <- subset(GSM6668953, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668954 <- subset(GSM6668954, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668955 <- subset(GSM6668955, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668956 <- subset(GSM6668956, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668957 <- subset(GSM6668957, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668958 <- subset(GSM6668958, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668959 <- subset(GSM6668959, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668960 <- subset(GSM6668960, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668961 <- subset(GSM6668961, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668962 <- subset(GSM6668962, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668963 <- subset(GSM6668963, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668964 <- subset(GSM6668964, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668965 <- subset(GSM6668965, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668966 <- subset(GSM6668966, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668967 <- subset(GSM6668967, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668968 <- subset(GSM6668968, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668969 <- subset(GSM6668969, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668970 <- subset(GSM6668970, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668971 <- subset(GSM6668971, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM6668972 <- subset(GSM6668972, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+```
+
+```{r}
+#Removing dead cells by filtering cells based on mitochondrial DNA expression for GEO datset GSE144469
+DefaultAssay(C1CD3) <- "RNA"
+C1CD3[["percent.mt"]] <- PercentageFeatureSet(C1CD3, pattern="^mt-")
+DefaultAssay(C2CD3) <- "RNA"
+C2CD3[["percent.mt"]] <- PercentageFeatureSet(C2CD3, pattern="^mt-")
+DefaultAssay(C2CD45) <- "RNA"
+C2CD45[["percent.mt"]] <- PercentageFeatureSet(C2CD45, pattern="^mt-")
+DefaultAssay(C3CD3) <- "RNA"
+C3CD3[["percent.mt"]] <- PercentageFeatureSet(C3CD3, pattern="^mt-")
+DefaultAssay(C3CD45) <- "RNA"
+C3CD45[["percent.mt"]] <- PercentageFeatureSet(C3CD45, pattern="^mt-")
+DefaultAssay(C4CD3) <- "RNA"
+C4CD3[["percent.mt"]] <- PercentageFeatureSet(C4CD3, pattern="^mt-")
+DefaultAssay(C4CD45) <- "RNA"
+C4CD45[["percent.mt"]] <- PercentageFeatureSet(C4CD45, pattern="^mt-")
+DefaultAssay(C5CD3) <- "RNA"
+C5CD3[["percent.mt"]] <- PercentageFeatureSet(C5CD3, pattern="^mt-")
+DefaultAssay(C6CD3) <- "RNA"
+C6CD3[["percent.mt"]] <- PercentageFeatureSet(C6CD3, pattern="^mt-")
+DefaultAssay(C6CD45) <- "RNA"
+C6CD45[["percent.mt"]] <- PercentageFeatureSet(C6CD45, pattern="^mt-")
+DefaultAssay(C7CD3) <- "RNA"
+C7CD3[["percent.mt"]] <- PercentageFeatureSet(C7CD3, pattern="^mt-")
+DefaultAssay(C8CD3) <- "RNA"
+C8CD3[["percent.mt"]] <- PercentageFeatureSet(C8CD3, pattern="^mt-")
+DefaultAssay(CT1CD3) <- "RNA"
+CT1CD3[["percent.mt"]] <- PercentageFeatureSet(CT1CD3, pattern="^mt-")
+DefaultAssay(CT1CD45) <- "RNA"
+CT1CD45[["percent.mt"]] <- PercentageFeatureSet(CT1CD45, pattern="^mt-")
+DefaultAssay(CT2CD3) <- "RNA"
+CT2CD3[["percent.mt"]] <- PercentageFeatureSet(CT2CD3, pattern="^mt-")
+DefaultAssay(CT2CD45) <- "RNA"
+CT2CD45[["percent.mt"]] <- PercentageFeatureSet(CT2CD45, pattern="^mt-")
+DefaultAssay(CT3CD3) <- "RNA"
+CT3CD3[["percent.mt"]] <- PercentageFeatureSet(CT3CD3, pattern="^mt-")
+DefaultAssay(CT3CD45) <- "RNA"
+CT3CD45[["percent.mt"]] <- PercentageFeatureSet(CT3CD45, pattern="^mt-")
+DefaultAssay(CT4CD3) <- "RNA"
+CT4CD3[["percent.mt"]] <- PercentageFeatureSet(CT4CD3, pattern="^mt-")
+DefaultAssay(CT4CD45) <- "RNA"
+CT4CD45[["percent.mt"]] <- PercentageFeatureSet(CT4CD45, pattern="^mt-")
+DefaultAssay(CT5CD3) <- "RNA"
+CT5CD3[["percent.mt"]] <- PercentageFeatureSet(CT5CD3, pattern="^mt-")
+DefaultAssay(CT6CD3) <- "RNA"
+CT6CD3[["percent.mt"]] <- PercentageFeatureSet(CT6CD3, pattern="^mt-")
+DefaultAssay(CT6CD45) <- "RNA"
+CT6CD45[["percent.mt"]] <- PercentageFeatureSet(CT6CD45, pattern="^mt-")
+DefaultAssay(CT7CD3) <- "RNA"
+CT7CD3[["percent.mt"]] <- PercentageFeatureSet(CT7CD3, pattern="^mt-")
+DefaultAssay(CT8CD3) <- "RNA"
+CT8CD3[["percent.mt"]] <- PercentageFeatureSet(CT8CD3, pattern="^mt-")
+DefaultAssay(NC1CD3) <- "RNA"
+NC1CD3[["percent.mt"]] <- PercentageFeatureSet(NC1CD3, pattern="^mt-")
+DefaultAssay(NC1CD45) <- "RNA"
+NC1CD45[["percent.mt"]] <- PercentageFeatureSet(NC1CD45, pattern="^mt-")
+DefaultAssay(NC2CD3) <- "RNA"
+NC2CD3[["percent.mt"]] <- PercentageFeatureSet(NC2CD3, pattern="^mt-")
+DefaultAssay(NC2CD45) <- "RNA"
+NC2CD45[["percent.mt"]] <- PercentageFeatureSet(NC2CD45, pattern="^mt-")
+DefaultAssay(NC3CD3) <- "RNA"
+NC3CD3[["percent.mt"]] <- PercentageFeatureSet(NC3CD3, pattern="^mt-")
+DefaultAssay(NC3CD45) <- "RNA"
+NC3CD45[["percent.mt"]] <- PercentageFeatureSet(NC3CD45, pattern="^mt-")
+DefaultAssay(NC4CD3) <- "RNA"
+NC4CD3[["percent.mt"]] <- PercentageFeatureSet(NC4CD3, pattern="^mt-")
+DefaultAssay(NC4CD45) <- "RNA"
+NC4CD45[["percent.mt"]] <- PercentageFeatureSet(NC4CD45, pattern="^mt-")
+DefaultAssay(NC5CD3) <- "RNA"
+NC5CD3[["percent.mt"]] <- PercentageFeatureSet(NC5CD3, pattern="^mt-")
+DefaultAssay(NC6CD3) <- "RNA"
+NC6CD3[["percent.mt"]] <- PercentageFeatureSet(NC6CD3, pattern="^mt-")
+DefaultAssay(NC6CD45) <- "RNA"
+NC6CD45[["percent.mt"]] <- PercentageFeatureSet(NC6CD45, pattern="^mt-")
+```
+
+```{r}
+#Removing dead cells by filtering cells based on mitochondrial DNA expression for GEO datset GSE144469
+C1CD3 <- subset(C1CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+C2CD3 <- subset(C2CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+C2CD45 <- subset(C2CD45, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+C3CD3 <- subset(C3CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+C3CD45 <- subset(C3CD45, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+C4CD3 <- subset(C4CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+C4CD45 <- subset(C4CD45, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+C5CD3 <- subset(C5CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+C6CD3 <- subset(C6CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+C6CD45 <- subset(C6CD45, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+C7CD3 <- subset(C7CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+C8CD3 <- subset(C8CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+CT1CD3 <- subset(CT1CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+CT1CD45 <- subset(CT1CD45, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+CT2CD3 <- subset(CT2CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+CT2CD45 <- subset(CT2CD45, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+CT3CD3 <- subset(CT3CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+CT3CD45 <- subset(CT3CD45, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+CT4CD3 <- subset(CT4CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+CT4CD45 <- subset(CT4CD45, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+CT5CD3 <- subset(CT5CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+CT6CD3 <- subset(CT6CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+CT6CD45 <- subset(CT6CD45, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+CT7CD3 <- subset(CT7CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+CT8CD3 <- subset(CT8CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+NC1CD3 <- subset(NC1CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+NC1CD45 <- subset(NC1CD45, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+NC2CD3 <- subset(NC2CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+NC2CD45 <- subset(NC2CD45, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+NC3CD3 <- subset(NC3CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+NC3CD45 <- subset(NC3CD45, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+NC4CD3 <- subset(NC4CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+NC4CD45 <- subset(NC4CD45, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+NC5CD3 <- subset(NC5CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+NC6CD3 <- subset(NC6CD3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+NC6CD45 <- subset(NC6CD45, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+```
+
+```{r}
+#Removing dead cells by filtering cells based on mitochondrial DNA expression for GEO datset GSE162025
+DefaultAssay(GSM4929845) <- "RNA"
+GSM4929845[["percent.mt"]] <- PercentageFeatureSet(GSM4929845, pattern="^mt-")
+DefaultAssay(GSM4929846) <- "RNA"
+GSM4929846[["percent.mt"]] <- PercentageFeatureSet(GSM4929846, pattern="^mt-")
+DefaultAssay(GSM4929847) <- "RNA"
+GSM4929847[["percent.mt"]] <- PercentageFeatureSet(GSM4929847, pattern="^mt-")
+DefaultAssay(GSM4929848) <- "RNA"
+GSM4929848[["percent.mt"]] <- PercentageFeatureSet(GSM4929848, pattern="^mt-")
+DefaultAssay(GSM4929849) <- "RNA"
+GSM4929849[["percent.mt"]] <- PercentageFeatureSet(GSM4929849, pattern="^mt-")
+DefaultAssay(GSM4929850) <- "RNA"
+GSM4929850[["percent.mt"]] <- PercentageFeatureSet(GSM4929850, pattern="^mt-")
+DefaultAssay(GSM4929851) <- "RNA"
+GSM4929851[["percent.mt"]] <- PercentageFeatureSet(GSM4929851, pattern="^mt-")
+DefaultAssay(GSM4929852) <- "RNA"
+GSM4929852[["percent.mt"]] <- PercentageFeatureSet(GSM4929852, pattern="^mt-")
+DefaultAssay(GSM4929853) <- "RNA"
+GSM4929853[["percent.mt"]] <- PercentageFeatureSet(GSM4929853, pattern="^mt-")
+DefaultAssay(GSM4929854) <- "RNA"
+GSM4929854[["percent.mt"]] <- PercentageFeatureSet(GSM4929854, pattern="^mt-")
+DefaultAssay(GSM4929855) <- "RNA"
+GSM4929855[["percent.mt"]] <- PercentageFeatureSet(GSM4929855, pattern="^mt-")
+DefaultAssay(GSM4929856) <- "RNA"
+GSM4929856[["percent.mt"]] <- PercentageFeatureSet(GSM4929856, pattern="^mt-")
+DefaultAssay(GSM4929857) <- "RNA"
+GSM4929857[["percent.mt"]] <- PercentageFeatureSet(GSM4929857, pattern="^mt-")
+DefaultAssay(GSM4929858) <- "RNA"
+GSM4929858[["percent.mt"]] <- PercentageFeatureSet(GSM4929858, pattern="^mt-")
+DefaultAssay(GSM4929859) <- "RNA"
+GSM4929859[["percent.mt"]] <- PercentageFeatureSet(GSM4929859, pattern="^mt-")
+DefaultAssay(GSM4929860) <- "RNA"
+GSM4929860[["percent.mt"]] <- PercentageFeatureSet(GSM4929860, pattern="^mt-")
+DefaultAssay(GSM4929861) <- "RNA"
+GSM4929861[["percent.mt"]] <- PercentageFeatureSet(GSM4929861, pattern="^mt-")
+DefaultAssay(GSM4929862) <- "RNA"
+GSM4929862[["percent.mt"]] <- PercentageFeatureSet(GSM4929862, pattern="^mt-")
+DefaultAssay(GSM4929863) <- "RNA"
+GSM4929863[["percent.mt"]] <- PercentageFeatureSet(GSM4929863, pattern="^mt-")
+```
+
+```{r}
+#Removing dead cells by filtering cells based on mitochondrial DNA expression for GEO datset GSE162025
+GSM4929845 <- subset(GSM4929845, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929846 <- subset(GSM4929846, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929847 <- subset(GSM4929847, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929848 <- subset(GSM4929848, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929849 <- subset(GSM4929849, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929850 <- subset(GSM4929850, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929851 <- subset(GSM4929851, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929852 <- subset(GSM4929852, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929853 <- subset(GSM4929853, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929854 <- subset(GSM4929854, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929855 <- subset(GSM4929855, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929856 <- subset(GSM4929856, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929857 <- subset(GSM4929857, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929858 <- subset(GSM4929858, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929859 <- subset(GSM4929859, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929860 <- subset(GSM4929860, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929861 <- subset(GSM4929861, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929862 <- subset(GSM4929862, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM4929863 <- subset(GSM4929863, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+```
+
+```{r}
+#Removing dead cells by filtering cells based on mitochondrial DNA expression for GEO datset GSE164690
+DefaultAssay(GSM5017071) <- "RNA"
+GSM5017071[["percent.mt"]] <- PercentageFeatureSet(GSM5017071, pattern="^mt-")
+DefaultAssay(GSM5017070) <- "RNA"
+GSM5017070[["percent.mt"]] <- PercentageFeatureSet(GSM5017070, pattern="^mt-")
+DefaultAssay(GSM5017069) <- "RNA"
+GSM5017069[["percent.mt"]] <- PercentageFeatureSet(GSM5017069, pattern="^mt-")
+DefaultAssay(GSM5017068) <- "RNA"
+GSM5017068[["percent.mt"]] <- PercentageFeatureSet(GSM5017068, pattern="^mt-")
+DefaultAssay(GSM5017067) <- "RNA"
+GSM5017067[["percent.mt"]] <- PercentageFeatureSet(GSM5017067, pattern="^mt-")
+DefaultAssay(GSM5017066) <- "RNA"
+GSM5017066[["percent.mt"]] <- PercentageFeatureSet(GSM5017066, pattern="^mt-")
+DefaultAssay(GSM5017065) <- "RNA"
+GSM5017065[["percent.mt"]] <- PercentageFeatureSet(GSM5017065, pattern="^mt-")
+DefaultAssay(GSM5017064) <- "RNA"
+GSM5017064[["percent.mt"]] <- PercentageFeatureSet(GSM5017064, pattern="^mt-")
+DefaultAssay(GSM5017063) <- "RNA"
+GSM5017063[["percent.mt"]] <- PercentageFeatureSet(GSM5017063, pattern="^mt-")
+DefaultAssay(GSM5017062) <- "RNA"
+GSM5017062[["percent.mt"]] <- PercentageFeatureSet(GSM5017062, pattern="^mt-")
+DefaultAssay(GSM5017061) <- "RNA"
+GSM5017061[["percent.mt"]] <- PercentageFeatureSet(GSM5017061, pattern="^mt-")
+DefaultAssay(GSM5017060) <- "RNA"
+GSM5017060[["percent.mt"]] <- PercentageFeatureSet(GSM5017060, pattern="^mt-")
+DefaultAssay(GSM5017059) <- "RNA"
+GSM5017059[["percent.mt"]] <- PercentageFeatureSet(GSM5017059, pattern="^mt-")
+DefaultAssay(GSM5017058) <- "RNA"
+GSM5017058[["percent.mt"]] <- PercentageFeatureSet(GSM5017058, pattern="^mt-")
+DefaultAssay(GSM5017057) <- "RNA"
+GSM5017057[["percent.mt"]] <- PercentageFeatureSet(GSM5017057, pattern="^mt-")
+DefaultAssay(GSM5017056) <- "RNA"
+GSM5017056[["percent.mt"]] <- PercentageFeatureSet(GSM5017056, pattern="^mt-")
+DefaultAssay(GSM5017055) <- "RNA"
+GSM5017055[["percent.mt"]] <- PercentageFeatureSet(GSM5017055, pattern="^mt-")
+DefaultAssay(GSM5017054) <- "RNA"
+GSM5017054[["percent.mt"]] <- PercentageFeatureSet(GSM5017054, pattern="^mt-")
+DefaultAssay(GSM5017053) <- "RNA"
+GSM5017053[["percent.mt"]] <- PercentageFeatureSet(GSM5017053, pattern="^mt-")
+DefaultAssay(GSM5017052) <- "RNA"
+GSM5017052[["percent.mt"]] <- PercentageFeatureSet(GSM5017052, pattern="^mt-")
+DefaultAssay(GSM5017051) <- "RNA"
+GSM5017051[["percent.mt"]] <- PercentageFeatureSet(GSM5017051, pattern="^mt-")
+DefaultAssay(GSM5017050) <- "RNA"
+GSM5017050[["percent.mt"]] <- PercentageFeatureSet(GSM5017050, pattern="^mt-")
+DefaultAssay(GSM5017049) <- "RNA"
+GSM5017049[["percent.mt"]] <- PercentageFeatureSet(GSM5017049, pattern="^mt-")
+DefaultAssay(GSM5017048) <- "RNA"
+GSM5017048[["percent.mt"]] <- PercentageFeatureSet(GSM5017048, pattern="^mt-")
+DefaultAssay(GSM5017047) <- "RNA"
+GSM5017047[["percent.mt"]] <- PercentageFeatureSet(GSM5017047, pattern="^mt-")
+DefaultAssay(GSM5017046) <- "RNA"
+GSM5017046[["percent.mt"]] <- PercentageFeatureSet(GSM5017046, pattern="^mt-")
+DefaultAssay(GSM5017044) <- "RNA"
+GSM5017044[["percent.mt"]] <- PercentageFeatureSet(GSM5017044, pattern="^mt-")
+DefaultAssay(GSM5017043) <- "RNA"
+GSM5017043[["percent.mt"]] <- PercentageFeatureSet(GSM5017043, pattern="^mt-")
+DefaultAssay(GSM5017042) <- "RNA"
+GSM5017042[["percent.mt"]] <- PercentageFeatureSet(GSM5017042, pattern="^mt-")
+DefaultAssay(GSM5017041) <- "RNA"
+GSM5017041[["percent.mt"]] <- PercentageFeatureSet(GSM5017041, pattern="^mt-")
+DefaultAssay(GSM5017040) <- "RNA"
+GSM5017040[["percent.mt"]] <- PercentageFeatureSet(GSM5017040, pattern="^mt-")
+DefaultAssay(GSM5017039) <- "RNA"
+GSM5017039[["percent.mt"]] <- PercentageFeatureSet(GSM5017039, pattern="^mt-")
+DefaultAssay(GSM5017038) <- "RNA"
+GSM5017038[["percent.mt"]] <- PercentageFeatureSet(GSM5017038, pattern="^mt-")
+DefaultAssay(GSM5017037) <- "RNA"
+GSM5017037[["percent.mt"]] <- PercentageFeatureSet(GSM5017037, pattern="^mt-")
+DefaultAssay(GSM5017036) <- "RNA"
+GSM5017036[["percent.mt"]] <- PercentageFeatureSet(GSM5017036, pattern="^mt-")
+DefaultAssay(GSM5017035) <- "RNA"
+GSM5017035[["percent.mt"]] <- PercentageFeatureSet(GSM5017035, pattern="^mt-")
+DefaultAssay(GSM5017034) <- "RNA"
+GSM5017034[["percent.mt"]] <- PercentageFeatureSet(GSM5017034, pattern="^mt-")
+DefaultAssay(GSM5017033) <- "RNA"
+GSM5017033[["percent.mt"]] <- PercentageFeatureSet(GSM5017033, pattern="^mt-")
+DefaultAssay(GSM5017032) <- "RNA"
+GSM5017032[["percent.mt"]] <- PercentageFeatureSet(GSM5017032, pattern="^mt-")
+DefaultAssay(GSM5017031) <- "RNA"
+GSM5017031[["percent.mt"]] <- PercentageFeatureSet(GSM5017031, pattern="^mt-")
+DefaultAssay(GSM5017030) <- "RNA"
+GSM5017030[["percent.mt"]] <- PercentageFeatureSet(GSM5017030, pattern="^mt-")
+DefaultAssay(GSM5017029) <- "RNA"
+GSM5017029[["percent.mt"]] <- PercentageFeatureSet(GSM5017029, pattern="^mt-")
+DefaultAssay(GSM5017028) <- "RNA"
+GSM5017028[["percent.mt"]] <- PercentageFeatureSet(GSM5017028, pattern="^mt-")
+DefaultAssay(GSM5017027) <- "RNA"
+GSM5017027[["percent.mt"]] <- PercentageFeatureSet(GSM5017027, pattern="^mt-")
+DefaultAssay(GSM5017026) <- "RNA"
+GSM5017026[["percent.mt"]] <- PercentageFeatureSet(GSM5017026, pattern="^mt-")
+DefaultAssay(GSM5017025) <- "RNA"
+GSM5017025[["percent.mt"]] <- PercentageFeatureSet(GSM5017025, pattern="^mt-")
+DefaultAssay(GSM5017024) <- "RNA"
+GSM5017024[["percent.mt"]] <- PercentageFeatureSet(GSM5017024, pattern="^mt-")
+DefaultAssay(GSM5017023) <- "RNA"
+GSM5017023[["percent.mt"]] <- PercentageFeatureSet(GSM5017023, pattern="^mt-")
+DefaultAssay(GSM5017022) <- "RNA"
+GSM5017022[["percent.mt"]] <- PercentageFeatureSet(GSM5017022, pattern="^mt-")
+DefaultAssay(GSM5017021) <- "RNA"
+GSM5017021[["percent.mt"]] <- PercentageFeatureSet(GSM5017021, pattern="^mt-")
+```
+
+```{r}
+#Removing dead cells by filtering cells based on mitochondrial DNA expression for GEO datset GSE164690
+GSM5017071 <- subset(GSM5017071, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017070 <- subset(GSM5017070, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017069 <- subset(GSM5017069, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017068 <- subset(GSM5017068, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017067 <- subset(GSM5017067, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017066 <- subset(GSM5017066, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017065 <- subset(GSM5017065, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017064 <- subset(GSM5017064, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017063 <- subset(GSM5017063, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017062 <- subset(GSM5017062, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017061 <- subset(GSM5017061, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017060 <- subset(GSM5017060, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017059 <- subset(GSM5017059, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017058 <- subset(GSM5017058, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017057 <- subset(GSM5017057, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017056 <- subset(GSM5017056, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017055 <- subset(GSM5017055, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017054 <- subset(GSM5017054, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017053 <- subset(GSM5017053, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017052 <- subset(GSM5017052, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017051 <- subset(GSM5017051, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017050 <- subset(GSM5017050, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017049 <- subset(GSM5017049, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017048 <- subset(GSM5017048, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017047 <- subset(GSM5017047, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017046 <- subset(GSM5017046, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017044 <- subset(GSM5017044, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017043 <- subset(GSM5017043, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017042 <- subset(GSM5017042, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017041 <- subset(GSM5017041, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017040 <- subset(GSM5017040, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017039 <- subset(GSM5017039, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017038 <- subset(GSM5017038, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017037 <- subset(GSM5017037, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017036 <- subset(GSM5017036, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017035 <- subset(GSM5017035, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017034 <- subset(GSM5017034, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017033 <- subset(GSM5017033, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017032 <- subset(GSM5017032, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017031 <- subset(GSM5017031, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017030 <- subset(GSM5017030, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017029 <- subset(GSM5017029, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017028 <- subset(GSM5017028, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017027 <- subset(GSM5017027, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017026 <- subset(GSM5017026, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017025 <- subset(GSM5017025, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017024 <- subset(GSM5017024, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017023 <- subset(GSM5017023, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017022 <- subset(GSM5017022, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+GSM5017021 <- subset(GSM5017021, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+```
+
+```{r}
+#Removing dead cells by filtering cells based on mitochondrial DNA expression for GEO datset GSE156405
+DefaultAssay(LiM) <- "RNA"
+LiM[["percent.mt"]] <- PercentageFeatureSet(LiM, pattern="^mt-")
+DefaultAssay(LuM) <- "RNA"
+LuM[["percent.mt"]] <- PercentageFeatureSet(LuM, pattern="^mt-")
+DefaultAssay(P1) <- "RNA"
+P1[["percent.mt"]] <- PercentageFeatureSet(P1, pattern="^mt-")
+DefaultAssay(P2) <- "RNA"
+P2[["percent.mt"]] <- PercentageFeatureSet(P2, pattern="^mt-")
+DefaultAssay(P3) <- "RNA"
+P3[["percent.mt"]] <- PercentageFeatureSet(P3, pattern="^mt-")
+DefaultAssay(P4) <- "RNA"
+P4[["percent.mt"]] <- PercentageFeatureSet(P4, pattern="^mt-")
+DefaultAssay(P5) <- "RNA"
+P5[["percent.mt"]] <- PercentageFeatureSet(P5, pattern="^mt-")
+DefaultAssay(PBMCLiM) <- "RNA"
+PBMCLiM[["percent.mt"]] <- PercentageFeatureSet(PBMCLiM, pattern="^mt-")
+DefaultAssay(PVMCLuM) <- "RNA"
+PVMCLuM[["percent.mt"]] <- PercentageFeatureSet(PVMCLuM, pattern="^mt-")
+DefaultAssay(PBMCP1) <- "RNA"
+PBMCP1[["percent.mt"]] <- PercentageFeatureSet(PBMCP1, pattern="^mt-")
+DefaultAssay(PBMCP2) <- "RNA"
+PBMCP2[["percent.mt"]] <- PercentageFeatureSet(PBMCP2, pattern="^mt-")
+DefaultAssay(PBMCP3) <- "RNA"
+PBMCP3[["percent.mt"]] <- PercentageFeatureSet(PBMCP3, pattern="^mt-")
+DefaultAssay(PBMCP4) <- "RNA"
+PBMCP4[["percent.mt"]] <- PercentageFeatureSet(PBMCP4, pattern="^mt-")
+DefaultAssay(PBMCPM) <- "RNA"
+PBMCPM[["percent.mt"]] <- PercentageFeatureSet(PBMCPM, pattern="^mt-")
+DefaultAssay(PBMCVM) <- "RNA"
+PBMCVM[["percent.mt"]] <- PercentageFeatureSet(PBMCVM, pattern="^mt-")
+DefaultAssay(PBMCearly) <- "RNA"
+PBMCearly[["percent.mt"]] <- PercentageFeatureSet(PBMCearly, pattern="^mt-")
+DefaultAssay(PBMClate) <- "RNA"
+PBMClate[["percent.mt"]] <- PercentageFeatureSet(PBMClate, pattern="^mt-")
+DefaultAssay(PBMCPDO2) <- "RNA"
+PBMCPDO2[["percent.mt"]] <- PercentageFeatureSet(PBMCPDO2, pattern="^mt-")
+DefaultAssay(VM) <- "RNA"
+VM[["percent.mt"]] <- PercentageFeatureSet(VM, pattern="^mt-")
+```
+
+```{r}
+#Removing dead cells by filtering cells based on mitochondrial DNA expression for GEO datset GSE156405
+LiM <- subset(LiM, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+LuM <- subset(LuM, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+P1 <- subset(P1, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+P2 <- subset(P2, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+P3 <- subset(P3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+P4 <- subset(P4, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+P5 <- subset(P5, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+PBMCLiM <- subset(PBMCLiM, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+PVMCLuM <- subset(PVMCLuM, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+PBMCP1 <- subset(PBMCP1, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+PBMCP2 <- subset(PBMCP2, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+PBMCP3 <- subset(PBMCP3, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+PBMCP4 <- subset(PBMCP4, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+PBMCPM <- subset(PBMCPM, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+PBMCVM <- subset(PBMCVM, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+PBMCearly <- subset(PBMCearly, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+PBMClate <- subset(PBMClate, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+PBMCPDO2 <- subset(PBMCPDO2, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+VM <- subset(VM, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+```
+
+```{r}
+#Removing dead cells by filtering cells based on mitochondrial DNA expression for GEO datset GSE117988
+DefaultAssay(PBMC) <- "RNA"
+PBMC[["percent.mt"]] <- PercentageFeatureSet(PBMC, pattern="^mt-")
+DefaultAssay(Tumor) <- "RNA"
+Tumor[["percent.mt"]] <- PercentageFeatureSet(Tumor, pattern="^mt-")
+
+PBMC <- subset(PBMC, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+Tumor <- subset(Tumor, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+```
+
+```{r}
+#Removing dead cells by filtering cells based on mitochondrial DNA expression for GEO datset GSE183590
+DefaultAssay(GSE183590) <- "RNA"
+GSE183590[["percent.mt"]] <- PercentageFeatureSet(GSE183590, pattern="^mt-")
+
+GSE183590 <- subset(GSE183590, subset = nFeature_RNA > 200 & nFeature_RNA < 5500 & percent.mt < 20)
+```
+
+```{r}
+#Subsetting T-cells in GSE216329
+GSM6668925@assays
+DefaultAssay(GSM6668925) <- "RNA"
+fibroblasts <- WhichCells(GSM6668925, expression = PTPRC > 0.8) 
+GSM6668925 = subset(GSM6668925, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668926) <- "RNA"
+fibroblasts <- WhichCells(GSM6668926, expression = PTPRC > 0.8) 
+GSM6668926 = subset(GSM6668926, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668927) <- "RNA"
+fibroblasts <- WhichCells(GSM6668927, expression = PTPRC > 0.8) 
+GSM6668927 = subset(GSM6668927, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668928) <- "RNA"
+fibroblasts <- WhichCells(GSM6668928, expression = PTPRC > 0.8) 
+GSM6668928 = subset(GSM6668928, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668929) <- "RNA"
+fibroblasts <- WhichCells(GSM6668929, expression = PTPRC > 0.8)
+GSM6668929 = subset(GSM6668929, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668930) <- "RNA"
+fibroblasts <- WhichCells(GSM6668930, expression = PTPRC > 0.8)
+GSM6668930 = subset(GSM6668930, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668931) <- "RNA"
+fibroblasts <- WhichCells(GSM6668931, expression = PTPRC > 0.8) 
+GSM6668931 = subset(GSM6668931, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668932) <- "RNA"
+fibroblasts <- WhichCells(GSM6668932, expression = PTPRC > 0.8) 
+GSM6668932 = subset(GSM6668932, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668933) <- "RNA"
+fibroblasts <- WhichCells(GSM6668933, expression = PTPRC > 0.8) 
+GSM6668933 = subset(GSM6668933, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668934) <- "RNA"
+fibroblasts <- WhichCells(GSM6668934, expression = PTPRC > 0.8) 
+GSM6668934 = subset(GSM6668934, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668935) <- "RNA"
+fibroblasts <- WhichCells(GSM6668935, expression = PTPRC > 0.8) 
+GSM6668935 = subset(GSM6668935, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668936) <- "RNA"
+fibroblasts <- WhichCells(GSM6668936, expression = PTPRC > 0.8) 
+GSM6668936 = subset(GSM6668936, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668937) <- "RNA"
+fibroblasts <- WhichCells(GSM6668937, expression = PTPRC > 0.8) 
+GSM6668937 = subset(GSM6668937, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668938) <- "RNA"
+fibroblasts <- WhichCells(GSM6668938, expression = PTPRC > 0.8) 
+GSM6668938 = subset(GSM6668938, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668939) <- "RNA"
+fibroblasts <- WhichCells(GSM6668939, expression = PTPRC > 0.8) 
+GSM6668939 = subset(GSM6668939, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668940) <- "RNA"
+fibroblasts <- WhichCells(GSM6668940, expression = PTPRC > 0.8) 
+GSM6668940 = subset(GSM6668940, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668941) <- "RNA"
+fibroblasts <- WhichCells(GSM6668941, expression = PTPRC > 0.8) 
+GSM6668941 = subset(GSM6668941, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668942) <- "RNA"
+fibroblasts <- WhichCells(GSM6668942, expression = PTPRC > 0.8) 
+GSM6668942 = subset(GSM6668942, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668943) <- "RNA"
+fibroblasts <- WhichCells(GSM6668943, expression = PTPRC > 0.8) 
+GSM6668943 = subset(GSM6668943, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668944) <- "RNA"
+fibroblasts <- WhichCells(GSM6668944, expression = PTPRC > 0.8) 
+GSM6668944 = subset(GSM6668944, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668945) <- "RNA"
+fibroblasts <- WhichCells(GSM6668945, expression = PTPRC > 0.8) 
+GSM6668945 = subset(GSM6668945, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668946) <- "RNA"
+fibroblasts <- WhichCells(GSM6668946, expression = PTPRC > 0.8) 
+GSM6668946 = subset(GSM6668946, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668947) <- "RNA"
+fibroblasts <- WhichCells(GSM6668947, expression = PTPRC > 0.8) 
+GSM6668947 = subset(GSM6668947, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668948) <- "RNA"
+fibroblasts <- WhichCells(GSM6668948, expression = PTPRC > 0.8) 
+GSM6668948 = subset(GSM6668948, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668949) <- "RNA"
+fibroblasts <- WhichCells(GSM6668949, expression = PTPRC > 0.8) 
+GSM6668949 = subset(GSM6668949, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668950) <- "RNA"
+fibroblasts <- WhichCells(GSM6668950, expression = PTPRC > 0.8) 
+GSM6668950 = subset(GSM6668950, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668951) <- "RNA"
+fibroblasts <- WhichCells(GSM6668951, expression = PTPRC > 0.8)
+GSM6668951 = subset(GSM6668951, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668952) <- "RNA"
+fibroblasts <- WhichCells(GSM6668952, expression = PTPRC > 0.8)
+GSM6668952 = subset(GSM6668952, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668953) <- "RNA"
+fibroblasts <- WhichCells(GSM6668953, expression = PTPRC > 0.8)
+GSM6668953 = subset(GSM6668953, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668954) <- "RNA"
+fibroblasts <- WhichCells(GSM6668954, expression = PTPRC > 0.8)
+GSM6668954 = subset(GSM6668954, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668955) <- "RNA"
+fibroblasts <- WhichCells(GSM6668955, expression = PTPRC > 0.8)
+GSM6668955 = subset(GSM6668955, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668956) <- "RNA"
+fibroblasts <- WhichCells(GSM6668956, expression = PTPRC > 0.8)
+GSM6668956 = subset(GSM6668956, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668957) <- "RNA"
+fibroblasts <- WhichCells(GSM6668957, expression = PTPRC > 0.8)
+GSM6668957 = subset(GSM6668957, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668958) <- "RNA"
+fibroblasts <- WhichCells(GSM6668958, expression = PTPRC > 0.8)
+GSM6668958 = subset(GSM6668958, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668959) <- "RNA"
+fibroblasts <- WhichCells(GSM6668959, expression = PTPRC > 0.8)
+GSM6668959 = subset(GSM6668959, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668960) <- "RNA"
+fibroblasts <- WhichCells(GSM6668960, expression = PTPRC > 0.8)
+GSM6668960 = subset(GSM6668960, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668961) <- "RNA"
+fibroblasts <- WhichCells(GSM6668961, expression = PTPRC > 0.8)
+GSM6668961 = subset(GSM6668961, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668962) <- "RNA"
+fibroblasts <- WhichCells(GSM6668962, expression = PTPRC > 0.8)
+GSM6668962 = subset(GSM6668962, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668963) <- "RNA"
+fibroblasts <- WhichCells(GSM6668963, expression = PTPRC > 0.8)
+GSM6668963 = subset(GSM6668963, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668964) <- "RNA"
+fibroblasts <- WhichCells(GSM6668964, expression = PTPRC > 0.8)
+GSM6668964 = subset(GSM6668964, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668965) <- "RNA"
+fibroblasts <- WhichCells(GSM6668965, expression = PTPRC > 0.8)
+GSM6668965 = subset(GSM6668965, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668966) <- "RNA"
+fibroblasts <- WhichCells(GSM6668966, expression = PTPRC > 0.8)
+GSM6668966 = subset(GSM6668966, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668967) <- "RNA"
+fibroblasts <- WhichCells(GSM6668967, expression = PTPRC > 0.8)
+GSM6668967 = subset(GSM6668967, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668968) <- "RNA"
+fibroblasts <- WhichCells(GSM6668968, expression = PTPRC > 0.8)
+GSM6668968 = subset(GSM6668968, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668969) <- "RNA"
+fibroblasts <- WhichCells(GSM6668969, expression = PTPRC > 0.8)
+GSM6668969 = subset(GSM6668969, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668970) <- "RNA"
+fibroblasts <- WhichCells(GSM6668970, expression = PTPRC > 0.8)
+GSM6668970 = subset(GSM6668970, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668971) <- "RNA"
+fibroblasts <- WhichCells(GSM6668971, expression = PTPRC > 0.8)
+GSM6668971 = subset(GSM6668971, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM6668972) <- "RNA"
+fibroblasts <- WhichCells(GSM6668972, expression = PTPRC > 0.8)
+GSM6668972 = subset(GSM6668972, cells = fibroblasts, invert = FALSE)
+```
+
+```{r}
+#Subsetting T-cells in GSE144469
+DefaultAssay(C1CD3) <- "RNA"
+fibroblasts <- WhichCells(C1CD3, expression = PTPRC > 0.8) 
+C1CD3 = subset(C1CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(C2CD3) <- "RNA"
+fibroblasts <- WhichCells(C2CD3, expression = PTPRC > 0.8) 
+C2CD3 = subset(C2CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(C2CD45) <- "RNA"
+fibroblasts <- WhichCells(C2CD45, expression = PTPRC > 0.8) 
+C2CD45 = subset(C2CD45, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(C3CD3) <- "RNA"
+fibroblasts <- WhichCells(C3CD3, expression = PTPRC > 0.8) 
+C3CD3 = subset(C3CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(C3CD45) <- "RNA"
+fibroblasts <- WhichCells(C3CD45, expression = PTPRC > 0.8) 
+C3CD45 = subset(C3CD45, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(C4CD3) <- "RNA"
+fibroblasts <- WhichCells(C4CD3, expression = PTPRC > 0.8) 
+C4CD3 = subset(C4CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(C4CD45) <- "RNA"
+fibroblasts <- WhichCells(C4CD45, expression = PTPRC > 0.8) 
+C4CD45 = subset(C4CD45, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(C5CD3) <- "RNA"
+fibroblasts <- WhichCells(C5CD3, expression = PTPRC > 0.8) 
+C5CD3 = subset(C5CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(C6CD3) <- "RNA"
+fibroblasts <- WhichCells(C6CD3, expression = PTPRC > 0.8) 
+C6CD3 = subset(C6CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(C6CD45) <- "RNA"
+fibroblasts <- WhichCells(C6CD45, expression = PTPRC > 0.8) 
+C6CD45 = subset(C6CD45, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(C7CD3) <- "RNA"
+fibroblasts <- WhichCells(C7CD3, expression = PTPRC > 0.8) 
+C7CD3 = subset(C7CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(C8CD3) <- "RNA"
+fibroblasts <- WhichCells(C8CD3, expression = PTPRC > 0.8) 
+C8CD3 = subset(C8CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(CT1CD3) <- "RNA"
+fibroblasts <- WhichCells(CT1CD3, expression = PTPRC > 0.8) 
+CT1CD3 = subset(CT1CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(CT1CD45) <- "RNA"
+fibroblasts <- WhichCells(CT1CD45, expression = PTPRC > 0.8) 
+CT1CD45 = subset(CT1CD45, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(CT2CD3) <- "RNA"
+fibroblasts <- WhichCells(CT2CD3, expression = PTPRC > 0.8) 
+CT2CD3 = subset(CT2CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(CT2CD45) <- "RNA"
+fibroblasts <- WhichCells(CT2CD45, expression = PTPRC > 0.8) 
+CT2CD45 = subset(CT2CD45, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(CT3CD3) <- "RNA"
+fibroblasts <- WhichCells(CT3CD3, expression = PTPRC > 0.8) 
+CT3CD3 = subset(CT3CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(CT3CD45) <- "RNA"
+fibroblasts <- WhichCells(CT3CD45, expression = PTPRC > 0.8) 
+CT3CD45 = subset(CT3CD45, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(CT4CD3) <- "RNA"
+fibroblasts <- WhichCells(CT4CD3, expression = PTPRC > 0.8) 
+CT4CD3 = subset(CT4CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(CT4CD45) <- "RNA"
+fibroblasts <- WhichCells(CT4CD45, expression = PTPRC > 0.8) 
+CT4CD45 = subset(CT4CD45, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(CT5CD3) <- "RNA"
+fibroblasts <- WhichCells(CT5CD3, expression = PTPRC > 0.8) 
+CT5CD3 = subset(CT5CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(CT6CD3) <- "RNA"
+fibroblasts <- WhichCells(CT6CD3, expression = PTPRC > 0.8) 
+CT6CD3 = subset(CT6CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(CT6CD45) <- "RNA"
+fibroblasts <- WhichCells(CT6CD45, expression = PTPRC > 0.8) 
+CT6CD45 = subset(CT6CD45, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(CT7CD3) <- "RNA"
+fibroblasts <- WhichCells(CT7CD3, expression = PTPRC > 0.8) 
+CT7CD3 = subset(CT7CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(CT8CD3) <- "RNA"
+fibroblasts <- WhichCells(CT8CD3, expression = PTPRC > 0.8) 
+CT8CD3 = subset(CT8CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(NC1CD3) <- "RNA"
+fibroblasts <- WhichCells(NC1CD3, expression = PTPRC > 0.8) 
+NC1CD3 = subset(NC1CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(NC1CD45) <- "RNA"
+fibroblasts <- WhichCells(NC1CD45, expression = PTPRC > 0.8) 
+NC1CD45 = subset(NC1CD45, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(NC2CD3) <- "RNA"
+fibroblasts <- WhichCells(NC2CD3, expression = PTPRC > 0.8) 
+NC2CD3 = subset(NC2CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(NC2CD45) <- "RNA"
+fibroblasts <- WhichCells(NC2CD45, expression = PTPRC > 0.8) 
+NC2CD45 = subset(NC2CD45, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(NC3CD3) <- "RNA"
+fibroblasts <- WhichCells(NC3CD3, expression = PTPRC > 0.8) 
+NC3CD3 = subset(NC3CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(NC2CD45) <- "RNA"
+fibroblasts <- WhichCells(NC2CD45, expression = PTPRC > 0.8) 
+NC2CD45 = subset(NC2CD45, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(NC4CD3) <- "RNA"
+fibroblasts <- WhichCells(NC4CD3, expression = PTPRC > 0.8) 
+NC4CD3 = subset(NC4CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(NC4CD45) <- "RNA"
+fibroblasts <- WhichCells(NC4CD45, expression = PTPRC > 0.8) 
+NC4CD45 = subset(NC4CD45, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(NC5CD3) <- "RNA"
+fibroblasts <- WhichCells(NC5CD3, expression = PTPRC > 0.8) 
+NC5CD3 = subset(NC5CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(NC6CD3) <- "RNA"
+fibroblasts <- WhichCells(NC6CD3, expression = PTPRC > 0.8) 
+NC6CD3 = subset(NC6CD3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(NC6CD45) <- "RNA"
+fibroblasts <- WhichCells(NC6CD45, expression = PTPRC > 0.8) 
+NC6CD45 = subset(NC6CD45, cells = fibroblasts, invert = FALSE)
+```
+
+```{r}
+#Subsetting T-cells in GSE162025
+DefaultAssay(GSM4929845) <- "RNA"
+fibroblasts <- WhichCells(GSM4929845, expression = PTPRC > 0.8) 
+GSM4929845 = subset(GSM4929845, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929846) <- "RNA"
+fibroblasts <- WhichCells(GSM4929846, expression = PTPRC > 0.8) 
+GSM4929846 = subset(GSM4929846, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929847) <- "RNA"
+fibroblasts <- WhichCells(GSM4929847, expression = PTPRC > 0.8) 
+GSM4929847 = subset(GSM4929847, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929848) <- "RNA"
+fibroblasts <- WhichCells(GSM4929848, expression = PTPRC > 0.8) 
+GSM4929848 = subset(GSM4929848, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929849) <- "RNA"
+fibroblasts <- WhichCells(GSM4929849, expression = PTPRC > 0.8) 
+GSM4929849 = subset(GSM4929849, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929850) <- "RNA"
+fibroblasts <- WhichCells(GSM4929850, expression = PTPRC > 0.8) 
+GSM4929850 = subset(GSM4929850, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929851) <- "RNA"
+fibroblasts <- WhichCells(GSM4929851, expression = PTPRC > 0.8) 
+GSM4929851 = subset(GSM4929851, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929852) <- "RNA"
+fibroblasts <- WhichCells(GSM4929852, expression = PTPRC > 0.8) 
+GSM4929852 = subset(GSM4929852, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929853) <- "RNA"
+fibroblasts <- WhichCells(GSM4929853, expression = PTPRC > 0.8) 
+GSM4929853 = subset(GSM4929853, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929854) <- "RNA"
+fibroblasts <- WhichCells(GSM4929854, expression = PTPRC > 0.8) 
+GSM4929854 = subset(GSM4929854, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929855) <- "RNA"
+fibroblasts <- WhichCells(GSM4929855, expression = PTPRC > 0.8) 
+GSM4929855 = subset(GSM4929855, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929856) <- "RNA"
+fibroblasts <- WhichCells(GSM4929856, expression = PTPRC > 0.8) 
+GSM4929856 = subset(GSM4929856, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929857) <- "RNA"
+fibroblasts <- WhichCells(GSM4929857, expression = PTPRC > 0.8) 
+GSM4929857 = subset(GSM4929857, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929858) <- "RNA"
+fibroblasts <- WhichCells(GSM4929858, expression = PTPRC > 0.8) 
+GSM4929858 = subset(GSM4929858, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929859) <- "RNA"
+fibroblasts <- WhichCells(GSM4929859, expression = PTPRC > 0.8) 
+GSM4929859 = subset(GSM4929859, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929860) <- "RNA"
+fibroblasts <- WhichCells(GSM4929860, expression = PTPRC > 0.8) 
+GSM4929860 = subset(GSM4929860, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929861) <- "RNA"
+fibroblasts <- WhichCells(GSM4929861, expression = PTPRC > 0.8) 
+GSM4929861 = subset(GSM4929861, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929862) <- "RNA"
+fibroblasts <- WhichCells(GSM4929862, expression = PTPRC > 0.8) 
+GSM4929862 = subset(GSM4929862, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM4929863) <- "RNA"
+fibroblasts <- WhichCells(GSM4929863, expression = PTPRC > 0.8) 
+GSM4929863 = subset(GSM4929863, cells = fibroblasts, invert = FALSE)
+```
+
+```{r}
+#Subsetting T-cells in GSE164690
+DefaultAssay(GSM5017071) <- "RNA"
+fibroblasts <- WhichCells(GSM5017071, expression = PTPRC > 0.8) 
+GSM5017071 = subset(GSM5017071, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017070) <- "RNA"
+fibroblasts <- WhichCells(GSM5017070, expression = PTPRC > 0.8) 
+GSM5017070 = subset(GSM5017070, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017069) <- "RNA"
+fibroblasts <- WhichCells(GSM5017069, expression = PTPRC > 0.8) 
+GSM5017069 = subset(GSM5017069, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017068) <- "RNA"
+fibroblasts <- WhichCells(GSM5017068, expression = PTPRC > 0.8) 
+GSM5017068 = subset(GSM5017068, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017067) <- "RNA"
+fibroblasts <- WhichCells(GSM5017067, expression = PTPRC > 0.8) 
+GSM5017067 = subset(GSM5017067, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017066) <- "RNA"
+fibroblasts <- WhichCells(GSM5017066, expression = PTPRC > 0.8) 
+GSM5017066 = subset(GSM5017066, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017065) <- "RNA"
+fibroblasts <- WhichCells(GSM5017065, expression = PTPRC > 0.8) 
+GSM5017065 = subset(GSM5017065, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017064) <- "RNA"
+fibroblasts <- WhichCells(GSM5017064, expression = PTPRC > 0.8) 
+GSM5017064 = subset(GSM5017064, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017063) <- "RNA"
+fibroblasts <- WhichCells(GSM5017063, expression = PTPRC > 0.8) 
+GSM5017063 = subset(GSM5017063, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017062) <- "RNA"
+fibroblasts <- WhichCells(GSM5017062, expression = PTPRC > 0.8) 
+GSM5017062 = subset(GSM5017062, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017061) <- "RNA"
+fibroblasts <- WhichCells(GSM5017061, expression = PTPRC > 0.8) 
+GSM5017061 = subset(GSM5017061, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017060) <- "RNA"
+fibroblasts <- WhichCells(GSM5017060, expression = PTPRC > 0.8) 
+GSM5017060 = subset(GSM5017060, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017059) <- "RNA"
+fibroblasts <- WhichCells(GSM5017059, expression = PTPRC > 0.8) 
+GSM5017059 = subset(GSM5017059, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017058) <- "RNA"
+fibroblasts <- WhichCells(GSM5017058, expression = PTPRC > 0.8) 
+GSM5017058 = subset(GSM5017058, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017057) <- "RNA"
+fibroblasts <- WhichCells(GSM5017057, expression = PTPRC > 0.8) 
+GSM5017057 = subset(GSM5017057, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017056) <- "RNA"
+fibroblasts <- WhichCells(GSM5017056, expression = PTPRC > 0.8) 
+GSM5017056 = subset(GSM5017056, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017055) <- "RNA"
+fibroblasts <- WhichCells(GSM5017055, expression = PTPRC > 0.8) 
+GSM5017055 = subset(GSM5017055, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017054) <- "RNA"
+fibroblasts <- WhichCells(GSM5017054, expression = PTPRC > 0.8) 
+GSM5017054 = subset(GSM5017054, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017053) <- "RNA"
+fibroblasts <- WhichCells(GSM5017053, expression = PTPRC > 0.8) 
+GSM5017053 = subset(GSM5017053, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017052) <- "RNA"
+fibroblasts <- WhichCells(GSM5017052, expression = PTPRC > 0.8) 
+GSM5017052 = subset(GSM5017052, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017051) <- "RNA"
+fibroblasts <- WhichCells(GSM5017051, expression = PTPRC > 0.8) 
+GSM5017051 = subset(GSM5017051, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017050) <- "RNA"
+fibroblasts <- WhichCells(GSM5017050, expression = PTPRC > 0.8) 
+GSM5017050 = subset(GSM5017050, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017049) <- "RNA"
+fibroblasts <- WhichCells(GSM5017049, expression = PTPRC > 0.8) 
+GSM5017049 = subset(GSM5017049, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017048) <- "RNA"
+fibroblasts <- WhichCells(GSM5017048, expression = PTPRC > 0.8) 
+GSM5017048 = subset(GSM5017048, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017047) <- "RNA"
+fibroblasts <- WhichCells(GSM5017047, expression = PTPRC > 0.8) 
+GSM5017047 = subset(GSM5017047, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017046) <- "RNA"
+fibroblasts <- WhichCells(GSM5017046, expression = PTPRC > 0.8) 
+GSM5017046 = subset(GSM5017046, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017044) <- "RNA"
+fibroblasts <- WhichCells(GSM5017044, expression = PTPRC > 0.8) 
+GSM5017044 = subset(GSM5017044, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017043) <- "RNA"
+fibroblasts <- WhichCells(GSM5017043, expression = PTPRC > 0.8) 
+GSM5017043 = subset(GSM5017043, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017042) <- "RNA"
+fibroblasts <- WhichCells(GSM5017042, expression = PTPRC > 0.8) 
+GSM5017042 = subset(GSM5017042, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017041) <- "RNA"
+fibroblasts <- WhichCells(GSM5017041, expression = PTPRC > 0.8) 
+GSM5017041 = subset(GSM5017041, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017040) <- "RNA"
+fibroblasts <- WhichCells(GSM5017040, expression = PTPRC > 0.8) 
+GSM5017040 = subset(GSM5017040, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017039) <- "RNA"
+fibroblasts <- WhichCells(GSM5017039, expression = PTPRC > 0.8) 
+GSM5017039 = subset(GSM5017039, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017038) <- "RNA"
+fibroblasts <- WhichCells(GSM5017038, expression = PTPRC > 0.8) 
+GSM5017038 = subset(GSM5017038, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017037) <- "RNA"
+fibroblasts <- WhichCells(GSM5017037, expression = PTPRC > 0.8) 
+GSM5017037 = subset(GSM5017037, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017036) <- "RNA"
+fibroblasts <- WhichCells(GSM5017036, expression = PTPRC > 0.8) 
+GSM5017036 = subset(GSM5017036, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017035) <- "RNA"
+fibroblasts <- WhichCells(GSM5017035, expression = PTPRC > 0.8) 
+GSM5017035 = subset(GSM5017035, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017034) <- "RNA"
+fibroblasts <- WhichCells(GSM5017034, expression = PTPRC > 0.8) 
+GSM5017034 = subset(GSM5017034, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017033) <- "RNA"
+fibroblasts <- WhichCells(GSM5017033, expression = PTPRC > 0.8) 
+GSM5017033 = subset(GSM5017033, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017032) <- "RNA"
+fibroblasts <- WhichCells(GSM5017032, expression = PTPRC > 0.8) 
+GSM5017032 = subset(GSM5017032, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017031) <- "RNA"
+fibroblasts <- WhichCells(GSM5017031, expression = PTPRC > 0.8) 
+GSM5017031 = subset(GSM5017031, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017030) <- "RNA"
+fibroblasts <- WhichCells(GSM5017030, expression = PTPRC > 0.8) 
+GSM5017030 = subset(GSM5017030, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017029) <- "RNA"
+fibroblasts <- WhichCells(GSM5017029, expression = PTPRC > 0.8) 
+GSM5017029 = subset(GSM5017029, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017028) <- "RNA"
+fibroblasts <- WhichCells(GSM5017028, expression = PTPRC > 0.8) 
+GSM5017028 = subset(GSM5017028, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017027) <- "RNA"
+fibroblasts <- WhichCells(GSM5017027, expression = PTPRC > 0.8) 
+GSM5017027 = subset(GSM5017027, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017026) <- "RNA"
+fibroblasts <- WhichCells(GSM5017026, expression = PTPRC > 0.8) 
+GSM5017026 = subset(GSM5017026, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017025) <- "RNA"
+fibroblasts <- WhichCells(GSM5017025, expression = PTPRC > 0.8) 
+GSM5017025 = subset(GSM5017025, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017024) <- "RNA"
+fibroblasts <- WhichCells(GSM5017024, expression = PTPRC > 0.8) 
+GSM5017024 = subset(GSM5017024, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017023) <- "RNA"
+fibroblasts <- WhichCells(GSM5017023, expression = PTPRC > 0.8) 
+GSM5017023 = subset(GSM5017023, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017022) <- "RNA"
+fibroblasts <- WhichCells(GSM5017022, expression = PTPRC > 0.8) 
+GSM5017022 = subset(GSM5017022, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(GSM5017021) <- "RNA"
+fibroblasts <- WhichCells(GSM5017021, expression = PTPRC > 0.8) 
+GSM5017021 = subset(GSM5017021, cells = fibroblasts, invert = FALSE)
+```
+
+```{r}
+#Subsetting T-cells in GSE156405
+DefaultAssay(LiM) <- "RNA"
+fibroblasts <- WhichCells(LiM, expression = PTPRC > 0.8) 
+LiM = subset(LiM, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(LuM) <- "RNA"
+fibroblasts <- WhichCells(LuM, expression = PTPRC > 0.8) 
+LuM = subset(LuM, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(P1) <- "RNA"
+fibroblasts <- WhichCells(P1, expression = PTPRC > 0.8) 
+P1 = subset(P1, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(P2) <- "RNA"
+fibroblasts <- WhichCells(P2, expression = PTPRC > 0.8) 
+P2 = subset(P2, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(P3) <- "RNA"
+fibroblasts <- WhichCells(P3, expression = PTPRC > 0.8) 
+P3 = subset(P3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(P4) <- "RNA"
+fibroblasts <- WhichCells(P4, expression = PTPRC > 0.8) 
+P4 = subset(P4, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(P5) <- "RNA"
+fibroblasts <- WhichCells(P5, expression = PTPRC > 0.8) 
+P5 = subset(P5, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(PBMCLiM) <- "RNA"
+fibroblasts <- WhichCells(PBMCLiM, expression = PTPRC > 0.8) 
+PBMCLiM = subset(PBMCLiM, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(PVMCLuM) <- "RNA"
+fibroblasts <- WhichCells(PVMCLuM, expression = PTPRC > 0.8) 
+PVMCLuM = subset(PVMCLuM, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(PBMCP1) <- "RNA"
+fibroblasts <- WhichCells(PBMCP1, expression = PTPRC > 0.8) 
+PBMCP1 = subset(PBMCP1, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(PBMCP2) <- "RNA"
+fibroblasts <- WhichCells(PBMCP2, expression = PTPRC > 0.8) 
+PBMCP2 = subset(PBMCP2, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(PBMCP2) <- "RNA"
+fibroblasts <- WhichCells(PBMCP2, expression = PTPRC > 0.8) 
+PBMCP2 = subset(PBMCP2, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(PBMCP3) <- "RNA"
+fibroblasts <- WhichCells(PBMCP3, expression = PTPRC > 0.8) 
+PBMCP3 = subset(PBMCP3, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(PBMCP4) <- "RNA"
+fibroblasts <- WhichCells(PBMCP4, expression = PTPRC > 0.8) 
+PBMCP4 = subset(PBMCP4, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(PBMCPM) <- "RNA"
+fibroblasts <- WhichCells(PBMCPM, expression = PTPRC > 0.8) 
+PBMCPM = subset(PBMCPM, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(PBMCVM) <- "RNA"
+fibroblasts <- WhichCells(PBMCVM, expression = PTPRC > 0.8) 
+PBMCVM = subset(PBMCVM, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(PBMCearly) <- "RNA"
+fibroblasts <- WhichCells(PBMCearly, expression = PTPRC > 0.8)
+PBMCearly = subset(PBMCearly, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(PBMClate) <- "RNA"
+fibroblasts <- WhichCells(PBMClate, expression = PTPRC > 0.8)
+PBMClate = subset(PBMClate, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(PBMCPDO2) <- "RNA"
+fibroblasts <- WhichCells(PBMCPDO2, expression = PTPRC > 0.8)
+PBMCPDO2 = subset(PBMCPDO2, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(VM) <- "RNA"
+fibroblasts <- WhichCells(VM, expression = PTPRC > 0.8) 
+VM = subset(VM, cells = fibroblasts, invert = FALSE)
+```
+
+```{r}
+#Subsetting T-cells in GSE117988
+DefaultAssay(PBMC) <- "RNA"
+fibroblasts <- WhichCells(PBMC, expression = PTPRC > 0.8) 
+PBMC = subset(PBMC, cells = fibroblasts, invert = FALSE)
+
+DefaultAssay(Tumor) <- "RNA"
+fibroblasts <- WhichCells(Tumor, expression = PTPRC > 0.8) 
+Tumor = subset(Tumor, cells = fibroblasts, invert = FALSE)
+```
+
+```{r}
+#Subsetting T-cells in GSE183590
+DefaultAssay(GSE183590) <- "RNA"
+fibroblasts <- WhichCells(GSE183590, expression = PTPRC > 0.8)
+GSE183590 = subset(GSE183590, cells = fibroblasts, invert = FALSE)
+```
+
+```{r}
+#Combining all the seurat objects into a list called h.list
+h.list <- list(GSM6668925, GSM6668926, GSM6668927, GSM6668928, GSM6668929, GSM6668930, GSM6668931, GSM6668932, GSM6668933, GSM6668934, GSM6668935, GSM6668936, GSM6668937, GSM6668938, GSM6668939, GSM6668940, GSM6668941, GSM6668942, GSM6668943, GSM6668944, GSM6668945, GSM6668946, GSM6668947, GSM6668948, GSM6668949, GSM6668950, GSM6668951, GSM6668952, GSM6668953, GSM6668954, GSM6668955, GSM6668956, GSM6668957, GSM6668958, GSM6668959, GSM6668960, GSM6668961, GSM6668962, GSM6668963, GSM6668964, GSM6668965, GSM6668966, GSM6668967, GSM6668968, GSM6668969, GSM6668970, GSM6668971, GSM6668972, C1CD3, C2CD3, C2CD45, C3CD3, C3CD45, C4CD3, C4CD45, C5CD3, C6CD3, C6CD45, C7CD3, C8CD3, CT1CD3, CT1CD45, CT2CD3, CT2CD45, CT3CD3, CT3CD45, CT4CD3, CT4CD45, CT5CD3, CT6CD3, CT6CD45, CT7CD3, CT8CD3, NC1CD3, NC1CD45, NC2CD3, NC2CD45, NC3CD3, NC3CD45, NC4CD3, NC4CD45, NC5CD3, NC6CD3, NC6CD45, GSM4929845, GSM4929846, GSM4929847, GSM4929848, GSM4929849, GSM4929850, GSM4929851, GSM4929852, GSM4929853, GSM4929854, GSM4929855, GSM4929856, GSM4929857, GSM4929858, GSM4929859, GSM4929860, GSM4929861, GSM4929862, GSM4929863, GSM5017071, GSM5017070, GSM5017069, GSM5017068, GSM5017067, GSM5017066, GSM5017065, GSM5017064, GSM5017063, GSM5017062, GSM5017061, GSM5017060, GSM5017059, GSM5017058, GSM5017057, GSM5017056, GSM5017055, GSM5017054, GSM5017053, GSM5017052, GSM5017051, GSM5017050, GSM5017049, GSM5017048, GSM5017047, GSM5017046, GSM5017044, GSM5017043, GSM5017042, GSM5017041, GSM5017040, GSM5017039, GSM5017038, GSM5017037, GSM5017036, GSM5017035, GSM5017034, GSM5017033, GSM5017032, GSM5017031, GSM5017030, GSM5017029, GSM5017028, GSM5017027, GSM5017026, GSM5017025, GSM5017024, GSM5017023, GSM5017022, GSM5017021, LiM, LuM, P1, P2, P3, P4, P5, PBMCLiM, PVMCLuM, PBMCP1, PBMCP2, PBMCP3, PBMCP4, PBMCPM, PBMCVM, PBMCearly, PBMClate, PBMCPDO2, VM, Tumor, PBMC, GSE183590)
+```
+
+```{r}
+#Normalizes h.list and finds the top 2000 variable features in the dataset
+for (i in 1:length(h.list)) {
+  h.list[[i]] <- NormalizeData(h.list[[i]])
+  h.list[[i]] <- FindVariableFeatures(h.list[[i]], selection.method = "vst", nfeatures = 2000)
+}
+
+#Finds a set of features to use for integration
+features <- SelectIntegrationFeatures(object.list = unlist(h.list))
+
+#Conducts PCA and reduces dimentionality by finding the features that are contributing to variability in the dataset
+for (i in 1:length(h.list)) {
+    h.list[[i]] <- ScaleData(h.list[[i]], features = features, verbose = FALSE)
+    h.list[[i]] <- RunPCA(h.list[[i]], features = features, verbose = FALSE, npcs=30)
+}
+```
+
+```{r}
+#Finds a set of features to use for integration
+features <- SelectIntegrationFeatures(object.list = unlist(h.list))
+
+#Conducts PCA and reduces dimentionality by finding the features that are contributing to variability in the dataset
+for (i in 1:length(h.list)) {
+    h.list[[i]] <- ScaleData(h.list[[i]], features = features, verbose = FALSE)
+    h.list[[i]] <- RunPCA(h.list[[i]], features = features, verbose = FALSE, npcs=30)
+}
+```
+
+```{r}
+#Conducts PCA and reduces dimentionality by finding the features that are contributing to variability in the dataset
+for (i in 1:length(h.list)) {
+    h.list[[i]] <- ScaleData(h.list[[i]], features = features, verbose = FALSE)
+    h.list[[i]] <- RunPCA(h.list[[i]], features = features, verbose = FALSE, npcs=30)
+}
+```
+
+```{r}
+#Performs batch correction on features in the dataset
+for (i in 1:length(h.list)) {
+  DefaultAssay(h.list[[i]])="RNA"
+  h.list[[i]] <- SCTransform(h.list[[i]], vars.to.regress = c("nFeature_RNA", "nCount_RNA", "percent.mt"), verbose = FALSE)
+}
+
+features <- SelectIntegrationFeatures(object.list = h.list, nfeatures = 3000)
+h.list <- PrepSCTIntegration(object.list = h.list, anchor.features = features)
+```
+
+```{r}
+#Identifies integration anchors in h.list. Integration anchors are shared reference points that are used to align the datasets, enabling data integration and comparison.
+hpbmc.anchors <- FindIntegrationAnchors(object.list=h.list, normalization.method="SCT", anchor.features=features, dims=1:42, k.filter=NA)
+```
+
+```{r}
+#Performs downstream analysis, including dimensionality reduction, clustering, and visualization, of the integrated dataset
+liu.integrated <- IntegrateData(anchorset = hpbmc.anchors, k.weight=23, normalization.method="SCT")
+liu.integrated <- RunPCA(liu.integrated, npcs = 30, verbose = FALSE, features=features)
+liu.integrated <- FindNeighbors(liu.integrated, verbose = FALSE)
+liu.integrated <- FindClusters(liu.integrated, verbose = FALSE)
+liu.integrated <- RunUMAP(object = liu.integrated, reduction="pca", dims = 1:15)
+p2 <- DimPlot(liu.integrated, label = TRUE, repel = TRUE)
+p2
+```
+
+```{r}
+#Visualizing the expression of the CD3 gene in the integrated dataset
+FeaturePlot(liu.integrated, features = "Cd3", max.cutoff="q80", min.cutoff="q15")
+VlnPlot(liu.integrated, features = "Cd3", split.by = "Genotype")
+
+#Visualizing the expression of the CD19 gene in the integrated dataset
+FeaturePlot(liu.integrated, features = "Cd19", max.cutoff="q80", min.cutoff="q15")
+VlnPlot(liu.integrated, features = "Cd19", split.by = "Genotype")
+
+#Visualizing the expression of the CD14 gene in the integrated dataset
+FeaturePlot(liu.integrated, features = "Cd14", max.cutoff="q80", min.cutoff="q15")
+VlnPlot(liu.integrated, features = "Cd14", split.by = "Genotype")
+
+#Visualizing the expression of the CD68 gene in the integrated dataset
+FeaturePlot(liu.integrated, features = "Cd68", max.cutoff="q80", min.cutoff="q15")
+VlnPlot(liu.integrated, features = "Cd68", split.by = "Genotype")
+
+#Visualizing the expression of the CD49b gene in the integrated dataset
+FeaturePlot(liu.integrated, features = "C49b", max.cutoff="q80", min.cutoff="q15")
+VlnPlot(liu.integrated, features = "Cd49b", split.by = "Genotype")
+
+#Visualizing the expression of the CD11c gene in the integrated dataset
+FeaturePlot(liu.integrated, features = "Cd11c", max.cutoff="q80", min.cutoff="q15")
+VlnPlot(liu.integrated, features = "Cd11c", split.by = "Genotype")
+```
